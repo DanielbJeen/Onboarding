@@ -33,67 +33,47 @@
   --header-h: 64px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Heebo', sans-serif; background: var(--white); color: var(--text); direction: rtl; }
+body { font-family: 'Heebo', sans-serif; background: var(--white); color: var(--text); }
 mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 
 /* TOPBAR */
 .topbar {
-  position: fixed; top: 0; right: 0; left: 0; height: var(--header-h);
+  position: fixed; top: 0; inset-inline: 0; height: var(--header-h);
   background: var(--white); display: flex; align-items: center;
   padding: 0 24px; gap: 16px; z-index: 100;
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 0 rgba(98, 69, 97, 0.04);
 }
 .topbar-brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 800; font-size: 16px; white-space: nowrap; }
-/* Jeen-style mark: lavender column + coral / yellow stack */
 .topbar-brand .brand-mark {
-  display: inline-flex;
-  align-items: stretch;
-  gap: 3px;
-  height: 28px;
-  flex-shrink: 0;
+  display: inline-flex; align-items: stretch; gap: 3px; height: 28px; flex-shrink: 0;
 }
 .topbar-brand .brand-mark__lavender {
-  width: 8px;
-  align-self: stretch;
-  background: var(--mark-lavender);
-  border-radius: 5px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  width: 8px; align-self: stretch; background: var(--mark-lavender);
+  border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 .topbar-brand .brand-mark__stack {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  width: 16px;
-  min-width: 16px;
+  display: flex; flex-direction: column; gap: 3px; width: 16px; min-width: 16px;
 }
 .topbar-brand .brand-mark__tile {
-  border-radius: 5px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
-.topbar-brand .brand-mark__tile--coral {
-  flex: 1 1 auto;
-  min-height: 10px;
-  background: var(--mark-coral);
-}
-.topbar-brand .brand-mark__tile--yellow {
-  flex: 0 0 9px;
-  background: var(--mark-yellow);
-  border-radius: 4px;
-}
-.topbar-sub { font-size: 12px; color: var(--slate); font-weight: 400; margin-right: 4px; }
-.search-wrap { flex: 1; max-width: 380px; margin-right: auto; position: relative; }
+.topbar-brand .brand-mark__tile--coral { flex: 1 1 auto; min-height: 10px; background: var(--mark-coral); }
+.topbar-brand .brand-mark__tile--yellow { flex: 0 0 9px; background: var(--mark-yellow); border-radius: 4px; }
+.topbar-sub { font-size: 12px; color: var(--slate); font-weight: 400; margin-inline-start: 4px; }
+.search-wrap { flex: 1; max-width: 380px; margin-inline-start: auto; position: relative; }
 .search-wrap input {
   width: 100%; background: var(--slate-light); border: 1px solid var(--border);
-  border-radius: 100px; padding: 8px 36px 8px 14px; color: var(--text);
-  font-family: 'Heebo', sans-serif; font-size: 14px; outline: none; direction: rtl;
+  border-radius: 100px; padding-block: 8px; padding-inline-start: 36px; padding-inline-end: 14px;
+  color: var(--text);
+  font-family: 'Heebo', sans-serif; font-size: 14px; outline: none;
   transition: background .2s, border-color .2s, box-shadow .2s;
 }
 .search-wrap input::placeholder { color: var(--muted); }
 .search-wrap input:focus { background: var(--white); border-color: rgba(98, 69, 97, 0.35); box-shadow: 0 0 0 3px var(--accent-soft); }
-.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.search-icon { position: absolute; inset-inline-start: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 .search-icon.icon svg { width: 16px; height: 16px; }
-#search-count { position: absolute; left: 36px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); display: none; }
+#search-count { position: absolute; inset-inline-end: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); display: none; }
 
 /* LANGUAGE SWITCH */
 .lang-switch {
@@ -111,22 +91,22 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 
 /* SIDEBAR */
 .sidebar {
-  position: fixed; top: var(--header-h); right: 0; width: var(--sidebar-w);
+  position: fixed; top: var(--header-h); inset-inline-start: 0; width: var(--sidebar-w);
   height: calc(100vh - var(--header-h)); background: var(--white);
-  border-left: 1px solid var(--border); overflow-y: auto; padding: 20px 0 40px; z-index: 90;
+  border-inline-end: 1px solid var(--border); overflow-y: auto; padding: 20px 0 40px; z-index: 90;
 }
 .sidebar-section { padding: 0 0 12px; margin-bottom: 4px; }
 .sidebar-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.8px; padding: 0 20px 8px; text-transform: uppercase; }
 .sidebar-item {
   display: flex; align-items: center; gap: 9px; padding: 9px 20px;
   font-size: 13.5px; color: var(--slate); cursor: pointer; text-decoration: none;
-  transition: background .12s, color .12s; border-right: 3px solid transparent;
+  transition: background .12s, color .12s; border-inline-start: 3px solid transparent;
 }
 .sidebar-item:hover { background: var(--accent-light); color: var(--accent); }
-.sidebar-item.active { background: var(--accent-light); color: var(--accent); border-right-color: var(--accent); font-weight: 600; }
+.sidebar-item.active { background: var(--accent-light); color: var(--accent); border-inline-start-color: var(--accent); font-weight: 600; }
 
 /* MAIN */
-.main { margin-right: var(--sidebar-w); margin-top: var(--header-h); padding: 40px 44px 80px; }
+.main { margin-inline-start: var(--sidebar-w); margin-top: var(--header-h); padding: 40px 44px 80px; }
 
 /* HERO */
 .hero-card {
@@ -155,7 +135,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 .hero-subtitle { font-size: 15px; color: var(--slate); margin-bottom: 24px; position: relative; }
 .hero-welcome {
   background: rgba(255,255,255,0.72); border: 1px solid var(--border);
-  border-right: 3px solid var(--accent); border-radius: 12px; padding: 14px 18px;
+  border-inline-start: 3px solid var(--accent); border-radius: 12px; padding: 14px 18px;
   font-size: 14px; color: var(--slate); line-height: 1.75; position: relative;
   backdrop-filter: blur(8px);
 }
@@ -171,7 +151,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 /* INFO BOXES */
 .boxes-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 @media (max-width:700px) { .boxes-2 { grid-template-columns: 1fr; } }
-.ibox { border-radius: 10px; padding: 16px 18px; font-size: 13.5px; line-height: 1.7; border-right: 3px solid; }
+.ibox { border-radius: 10px; padding: 16px 18px; font-size: 13.5px; line-height: 1.7; border-inline-start: 3px solid; }
 .ibox.blue { background: var(--accent-light); border-color: var(--accent-mid); color: #3D2A3C; }
 .ibox.teal { background: var(--success-light); border-color: var(--success); color: #2D3F36; }
 .ibox.amber { background: var(--warm-light); border-color: var(--warm); color: #4A3428; }
@@ -210,10 +190,10 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 .chk-item.done .chk-lbl { color: var(--success); text-decoration: line-through; opacity: 0.7; }
 
 /* TIMELINE */
-.timeline { position: relative; padding-right: 30px; }
-.timeline::before { content: ''; position: absolute; right: 11px; top: 16px; bottom: 16px; width: 2px; background: linear-gradient(to bottom, var(--accent-mid), var(--border)); }
+.timeline { position: relative; padding-inline-start: 30px; }
+.timeline::before { content: ''; position: absolute; inset-inline-start: 11px; top: 16px; bottom: 16px; width: 2px; background: linear-gradient(to bottom, var(--accent-mid), var(--border)); }
 .tl-item { position: relative; margin-bottom: 14px; }
-.tl-dot { position: absolute; right: -23px; top: 16px; width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid var(--accent); background: var(--white); z-index: 1; transition: background .2s; }
+.tl-dot { position: absolute; inset-inline-start: -23px; top: 16px; width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid var(--accent); background: var(--white); z-index: 1; transition: background .2s; }
 .tl-item.done .tl-dot { background: var(--success); border-color: var(--success); }
 .tl-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; transition: box-shadow .15s; }
 .tl-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
@@ -232,6 +212,12 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 .week-badge.w2 { background: var(--accent-mid); }
 .week-badge.w3 { background: linear-gradient(135deg, var(--accent) 0%, #4A3550 100%); }
 
+/* AGENT LIST (inside timeline) */
+.tl-agents { margin-top: 10px; background: var(--accent-light); border-radius: 6px; padding: 10px; border: 1px solid var(--border); }
+.tl-agents summary { cursor: pointer; font-weight: 600; color: var(--accent); outline: none; list-style-position: inside; }
+.tl-agents ul { margin-top: 8px; margin-inline-start: 20px; color: var(--slate); font-size: 13px; display: flex; flex-direction: column; gap: 6px; padding: 0; list-style: none; }
+.tl-agents li { background: var(--white); padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border); }
+
 /* LINKS */
 .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width:600px) { .links-grid { grid-template-columns: 1fr; } }
@@ -246,7 +232,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 #no-results { display: none; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 60px 20px; color: var(--muted); font-size: 15px; }
 #no-results .icon { color: var(--muted); opacity: 0.65; }
 
-/* Inline SVG icons (replace emoji) */
+/* Inline SVG icons */
 .icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); vertical-align: middle; }
 .icon svg { width: 1.125rem; height: 1.125rem; display: block; }
 .icon-muted { color: var(--muted); }
@@ -303,7 +289,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 </svg>
 
 <header class="topbar">
-    <div class="topbar-brand">
+  <div class="topbar-brand">
     <div class="brand-mark" aria-hidden="true" title="Jeen">
       <span class="brand-mark__lavender"></span>
       <span class="brand-mark__stack">
@@ -311,55 +297,55 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
         <span class="brand-mark__tile brand-mark__tile--yellow"></span>
       </span>
     </div>
-    Jeen Onboarding
-    <span class="topbar-sub">AI Solutions Engineer</span>
+    <span data-i18n="brandTitle">Jeen Onboarding</span>
+    <span class="topbar-sub" data-i18n="brandSub">AI Solutions Engineer</span>
   </div>
   <div class="search-wrap">
-    <input type="text" id="search-input" placeholder="חיפוש בתוכן..." oninput="doSearch(this.value)" autocomplete="off">
+    <input type="text" id="search-input" data-i18n-placeholder="searchPlaceholder" placeholder="חיפוש בתוכן..." oninput="doSearch(this.value)" autocomplete="off">
     <span class="search-icon icon icon-muted" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search"/></svg></span>
     <span id="search-count"></span>
   </div>
-  <a class="lang-switch" href="onboarding_ai_solution_engineer-2-en.html" title="Switch to English" aria-label="Switch to English">
+  <button type="button" class="lang-switch" id="lang-switch-btn" onclick="toggleLanguage()" data-i18n-title="langSwitchTitle" data-i18n-aria-label="langSwitchTitle" title="Switch to English" aria-label="Switch to English">
     <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-globe"/></svg></span>
-    <span>EN</span>
-  </a>
+    <span data-i18n="langSwitchLabel">EN</span>
+  </button>
 </header>
 
 <nav class="sidebar">
   <div class="sidebar-section">
-    <div class="sidebar-label">ניווט מהיר</div>
-    <a class="sidebar-item active" href="#hero" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-home"/></svg></span> ברוכים הבאים</a>
-    <a class="sidebar-item" href="#overview" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-list"/></svg></span> סקירה כללית</a>
-    <a class="sidebar-item" href="#people" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-users"/></svg></span> אנשי קשר</a>
+    <div class="sidebar-label" data-i18n="navQuick">ניווט מהיר</div>
+    <a class="sidebar-item active" href="#hero" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-home"/></svg></span> <span data-i18n="navWelcome">ברוכים הבאים</span></a>
+    <a class="sidebar-item" href="#overview" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-list"/></svg></span> <span data-i18n="navOverview">סקירה כללית</span></a>
+    <a class="sidebar-item" href="#people" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-users"/></svg></span> <span data-i18n="navContacts">אנשי קשר</span></a>
   </div>
   <div class="sidebar-section">
-    <div class="sidebar-label">תוכן</div>
-    <a class="sidebar-item" href="#checklist" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-check"/></svg></span> צ'ק ליסט</a>
-    <a class="sidebar-item" href="#schedule" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-calendar"/></svg></span> לו"ז החפיפה</a>
-    <a class="sidebar-item" href="#links" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-link"/></svg></span> לינקים שימושיים</a>
+    <div class="sidebar-label" data-i18n="navContent">תוכן</div>
+    <a class="sidebar-item" href="#checklist" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-check"/></svg></span> <span data-i18n="navChecklist">צ'ק ליסט</span></a>
+    <a class="sidebar-item" href="#schedule" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-calendar"/></svg></span> <span data-i18n="navSchedule">לו"ז החפיפה</span></a>
+    <a class="sidebar-item" href="#links" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-link"/></svg></span> <span data-i18n="navLinks">לינקים שימושיים</span></a>
   </div>
   <div class="sidebar-section">
-    <div class="sidebar-label">מידע</div>
-    <a class="sidebar-item" href="#tips" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-light"/></svg></span> טיפים חשובים</a>
+    <div class="sidebar-label" data-i18n="navInfo">מידע</div>
+    <a class="sidebar-item" href="#tips" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-light"/></svg></span> <span data-i18n="navTips">טיפים חשובים</span></a>
   </div>
 </nav>
 
 <main class="main" id="main-content">
-  <div id="no-results"><span class="icon icon-muted" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search-off"/></svg></span><span>לא נמצאו תוצאות לחיפוש הזה</span></div>
+  <div id="no-results"><span class="icon icon-muted" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search-off"/></svg></span><span data-i18n="noResults">לא נמצאו תוצאות לחיפוש הזה</span></div>
 
   <section id="hero" class="section">
     <div class="hero-card">
       <div class="hero-dots"></div>
-      <div class="hero-tag"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-cpu"/></svg></span> Jeen AI · חפיפה מקצועית</div>
-      <h1>ברוכים הבאים!<br><span>AI Solutions Engineer</span></h1>
-      <div class="hero-welcome">
+      <div class="hero-tag"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-cpu"/></svg></span> <span data-i18n="heroTag">Jeen AI · חפיפה מקצועית</span></div>
+      <h1><span data-i18n="heroTitle">ברוכים הבאים!</span><br><span data-i18n="heroSubtitle">AI Solutions Engineer</span></h1>
+      <div class="hero-welcome" data-i18n-html="heroWelcomeHtml">
         תוכנית החפיפה הזו נבנתה כדי שתרגיש/י בנוח, בטוח/ה ומוכן/ה לקחת את ה-AI Solutions Engineer שבך לדרגה הבאה.<br>  יש אנשים מדהימים לצדך בכל שלב — ואת/ה לא לבד.
       </div>
       <div class="pills">
-        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clock"/></svg></span> שבועיים · 10 ימי עבודה</div>
-        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-pin"/></svg></span> חלק 1 — יסודות וממשקים</div>
-        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-arrow-up"/></svg></span> חלק 2 — טכני ופרקטיקה</div>
-        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span> חלק 3 — פרויקט גמר ושיחות</div>
+        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clock"/></svg></span> <span data-i18n="pill1">שבועיים · 10 ימי עבודה</span></div>
+        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-pin"/></svg></span> <span data-i18n="pill2">חלק 1 — יסודות וממשקים</span></div>
+        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-arrow-up"/></svg></span> <span data-i18n="pill3">חלק 2 — טכני ופרקטיקה</span></div>
+        <div class="pill"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span> <span data-i18n="pill4">חלק 3 — פרויקט גמר ושיחות</span></div>
       </div>
     </div>
   </section>
@@ -367,86 +353,85 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
   <section id="overview" class="section">
     <div class="section-hd">
       <div class="section-ico" style="background:var(--accent-light);"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-list"/></svg></span></div>
-      <div class="section-title">סקירה כללית — תחומי מיקוד</div>
+      <div class="section-title" data-i18n="overviewTitle">סקירה כללית — תחומי מיקוד</div>
     </div>
     <div class="boxes-2">
-      <div class="ibox blue"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-building"/></svg></span> אדמיניסטרציה ומנהלות</strong>ציוד, הגדרות, הכרת ה-Buddy והבנת היום-יום בתפקיד</div>
-      <div class="ibox teal"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-landmark"/></svg></span> מבנה ארגוני</strong>CTO, ראשי צוותים, ממשקים חיצוניים — ביטחוני ואזרחי</div>
-      <div class="ibox slate"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-layers"/></svg></span> ליבה טכנולוגית</strong>LMS 5.1, Langflow, מעטפת הפיתוח וסביבת העבודה</div>
-      <div class="ibox amber"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span> התנסות מעשית</strong>פרויקטים אמיתיים + תרגיל מסכם Hands-on עם ביקורת</div>
+      <div class="ibox blue"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-building"/></svg></span> <span data-i18n="box1Title">אדמיניסטרציה ומנהלות</span></strong><span data-i18n="box1Body">ציוד, הגדרות, הכרת ה-Buddy והבנת היום-יום בתפקיד</span></div>
+      <div class="ibox teal"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-landmark"/></svg></span> <span data-i18n="box2Title">מבנה ארגוני</span></strong><span data-i18n="box2Body">CTO, ראשי צוותים, ממשקים חיצוניים — ביטחוני ואזרחי</span></div>
+      <div class="ibox slate"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-layers"/></svg></span> <span data-i18n="box3Title">ליבה טכנולוגית</span></strong><span data-i18n="box3Body">LMS 5.1, Langflow, מעטפת הפיתוח וסביבת העבודה</span></div>
+      <div class="ibox amber"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span> <span data-i18n="box4Title">התנסות מעשית</span></strong><span data-i18n="box4Body">פרויקטים אמיתיים + תרגיל מסכם Hands-on עם ביקורת</span></div>
     </div>
   </section>
 
   <section id="people" class="section">
     <div class="section-hd">
       <div class="section-ico" style="background:#F0E8F5;"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-users"/></svg></span></div>
-      <div class="section-title">האנשים שיעמדו לצדך</div>
+      <div class="section-title" data-i18n="peopleTitle">האנשים שיעמדו לצדך</div>
     </div>
     <div class="people">
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span></div><div><div class="person-name">Buddy</div><div class="person-role">הכתובת הראשונה לכל שאלה — מלווה לאורך כל תהליך החפיפה</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-landmark"/></svg></span></div><div><div class="person-name">CTO וראשי צוותים</div><div class="person-role">פגישות היכרות, הבנת הארגון וכיוון אסטרטגי</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search"/></svg></span></div><div><div class="person-name">נציג/ה QA ו-DevOps</div><div class="person-role">חשיפה לתשתית ולתהליכי איכות</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span></div><div><div class="person-name">דורון / אייל / VP</div><div class="person-role">הנחיית הפרויקט הגמר</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-globe"/></svg></span></div><div><div class="person-name">ממשקים חיצוניים</div><div class="person-role">צה"ל, בנק מזרחי (תלוי תקופה)</div></div></div>
+      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span></div><div><div class="person-name" data-i18n="person1Name">Buddy</div><div class="person-role" data-i18n="person1Role">הכתובת הראשונה לכל שאלה — מלווה לאורך כל תהליך החפיפה</div></div></div>
+      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-landmark"/></svg></span></div><div><div class="person-name" data-i18n="person2Name">CTO וראשי צוותים</div><div class="person-role" data-i18n="person2Role">פגישות היכרות, הבנת הארגון וכיוון אסטרטגי</div></div></div>
+      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search"/></svg></span></div><div><div class="person-name" data-i18n="person3Name">נציג/ה QA ו-DevOps</div><div class="person-role" data-i18n="person3Role">חשיפה לתשתית ולתהליכי איכות</div></div></div>
+      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span></div><div><div class="person-name" data-i18n="person4Name">דורון / אייל / VP</div><div class="person-role" data-i18n="person4Role">הנחיית הפרויקט הגמר</div></div></div>
+      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-globe"/></svg></span></div><div><div class="person-name" data-i18n="person5Name">ממשקים חיצוניים</div><div class="person-role" data-i18n="person5Role">צה"ל, בנק מזרחי (תלוי תקופה)</div></div></div>
     </div>
   </section>
 
   <section id="checklist" class="section">
     <div class="section-hd">
       <div class="section-ico" style="background:var(--success-light);"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-check"/></svg></span></div>
-      <div class="section-title">צ'ק ליסט עובד/ת חדש/ה</div>
+      <div class="section-title" data-i18n="checklistTitle">צ'ק ליסט עובד/ת חדש/ה</div>
     </div>
-    <div class="ibox teal" style="margin-bottom:20px;">סמנו כל סעיף כשהוא הושלם — כך לא יפול שום דבר בין הכסאות.</div>
+    <div class="ibox teal" style="margin-bottom:20px;" data-i18n="checklistIntro">סמנו כל סעיף כשהוא הושלם — כך לא יפול שום דבר בין הכסאות.</div>
     <div style="margin-bottom:20px;">
       <div class="progress-meta">
-        <span style="font-weight:600;color:var(--text)">התקדמות כללית</span>
+        <span style="font-weight:600;color:var(--text)" data-i18n="progressLabel">התקדמות כללית</span>
         <span id="prog-text">0 / 21 סעיפים</span>
       </div>
       <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar"></div></div>
       <div class="progress-actions">
-        <button type="button" class="btn-reset-progress" onclick="resetSavedProgress()">איפוס סימונים שמורים</button>
+        <button type="button" class="btn-reset-progress" onclick="resetSavedProgress()" data-i18n="resetBtn">איפוס סימונים שמורים</button>
       </div>
     </div>
 
     <div class="chk-group">
-      <div class="chk-group-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-building"/></svg></span> מנהלות</div>
+      <div class="chk-group-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-building"/></svg></span> <span data-i18n="grpAdmin">מנהלות</span></div>
       <div class="chk-list">
-        <label class="chk-item" id="ci-1"><input type="checkbox" onchange="toggleCheck('ci-1')"><div><div class="chk-lbl">חתימה על ציוד</div></div></label>
-        <label class="chk-item" id="ci-2"><input type="checkbox" onchange="toggleCheck('ci-2')"><div><div class="chk-lbl">Outlook</div><div class="chk-sub">הגדרת מייל ארגוני</div></div></label>
-        <label class="chk-item" id="ci-3"><input type="checkbox" onchange="toggleCheck('ci-3')"><div><div class="chk-lbl">HiBob</div><div class="chk-sub">מערכת HR ארגונית</div></div></label>
-        <label class="chk-item" id="ci-4"><input type="checkbox" onchange="toggleCheck('ci-4')"><div><div class="chk-lbl">סיבוס</div><div class="chk-sub">הגדרת חשבון ארוחות</div></div></label>
-        <label class="chk-item" id="ci-5"><input type="checkbox" onchange="toggleCheck('ci-5')"><div><div class="chk-lbl">Slack</div><div class="chk-sub">תקשורת פנים-ארגונית</div></div></label>
-        <label class="chk-item" id="ci-6"><input type="checkbox" onchange="toggleCheck('ci-6')"><div><div class="chk-lbl">Jira</div><div class="chk-sub">ניהול משימות ופרויקטים</div></div></label>
-        <label class="chk-item" id="ci-7"><input type="checkbox" onchange="toggleCheck('ci-7')"><div><div class="chk-lbl">Admiral</div><div class="chk-sub">מעקב שעות</div></div></label>
-        <label class="chk-item" id="ci-8"><input type="checkbox" onchange="toggleCheck('ci-8')"><div><div class="chk-lbl">SharePoint ארגוני</div><div class="chk-sub">ניהול ידע</div></div></label>
-        <label class="chk-item" id="ci-9"><input type="checkbox" onchange="toggleCheck('ci-9')"><div><div class="chk-lbl">Monday ארגוני</div><div class="chk-sub">ניהול ידע</div></div></label>
-        <label class="chk-item" id="ci-10"><input type="checkbox" onchange="toggleCheck('ci-10')"><div><div class="chk-lbl">קבוצות Whatsapp & Outlook</div><div class="chk-sub">ניהול ידע</div></div></label>
-        <label class="chk-item" id="ci-15-rec"><input type="checkbox" onchange="toggleCheck('ci-15-rec')"><div><div class="chk-lbl"><a href="https://www.postgresql.org/download/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;">להורדה של pgadmin ------ -> תלחצו</a></div></div></label>      
-        <label class="chk-item" id="ci-12"><input type="checkbox" onchange="toggleCheck('ci-12')"><div><div class="chk-lbl">סיווג ביטחוני</div></div></label>
+        <label class="chk-item" id="ci-1"><input type="checkbox" onchange="toggleCheck('ci-1')"><div><div class="chk-lbl" data-i18n="chk1">חתימה על ציוד</div></div></label>
+        <label class="chk-item" id="ci-2"><input type="checkbox" onchange="toggleCheck('ci-2')"><div><div class="chk-lbl" data-i18n="chk2Lbl">Outlook</div><div class="chk-sub" data-i18n="chk2Sub">הגדרת מייל ארגוני</div></div></label>
+        <label class="chk-item" id="ci-3"><input type="checkbox" onchange="toggleCheck('ci-3')"><div><div class="chk-lbl" data-i18n="chk3Lbl">HiBob</div><div class="chk-sub" data-i18n="chk3Sub">מערכת HR ארגונית</div></div></label>
+        <label class="chk-item" id="ci-4"><input type="checkbox" onchange="toggleCheck('ci-4')"><div><div class="chk-lbl" data-i18n="chk4Lbl">סיבוס</div><div class="chk-sub" data-i18n="chk4Sub">הגדרת חשבון ארוחות</div></div></label>
+        <label class="chk-item" id="ci-5"><input type="checkbox" onchange="toggleCheck('ci-5')"><div><div class="chk-lbl" data-i18n="chk5Lbl">Slack</div><div class="chk-sub" data-i18n="chk5Sub">תקשורת פנים-ארגונית</div></div></label>
+        <label class="chk-item" id="ci-6"><input type="checkbox" onchange="toggleCheck('ci-6')"><div><div class="chk-lbl" data-i18n="chk6Lbl">Jira</div><div class="chk-sub" data-i18n="chk6Sub">ניהול משימות ופרויקטים</div></div></label>
+        <label class="chk-item" id="ci-7"><input type="checkbox" onchange="toggleCheck('ci-7')"><div><div class="chk-lbl" data-i18n="chk7Lbl">Admiral</div><div class="chk-sub" data-i18n="chk7Sub">מעקב שעות</div></div></label>
+        <label class="chk-item" id="ci-8"><input type="checkbox" onchange="toggleCheck('ci-8')"><div><div class="chk-lbl" data-i18n="chk8Lbl">SharePoint ארגוני</div><div class="chk-sub" data-i18n="chk8Sub">ניהול ידע</div></div></label>
+        <label class="chk-item" id="ci-9"><input type="checkbox" onchange="toggleCheck('ci-9')"><div><div class="chk-lbl" data-i18n="chk9Lbl">Monday ארגוני</div><div class="chk-sub" data-i18n="chk9Sub">ניהול ידע</div></div></label>
+        <label class="chk-item" id="ci-10"><input type="checkbox" onchange="toggleCheck('ci-10')"><div><div class="chk-lbl" data-i18n="chk10Lbl">קבוצות Whatsapp & Outlook</div><div class="chk-sub" data-i18n="chk10Sub">ניהול ידע</div></div></label>
+        <label class="chk-item" id="ci-15-rec"><input type="checkbox" onchange="toggleCheck('ci-15-rec')"><div><div class="chk-lbl"><a href="https://www.postgresql.org/download/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;" data-i18n="chkPgadmin">להורדה של pgadmin ------ -> תלחצו</a></div></div></label>
+        <label class="chk-item" id="ci-12"><input type="checkbox" onchange="toggleCheck('ci-12')"><div><div class="chk-lbl" data-i18n="chk12">סיווג ביטחוני</div></div></label>
       </div>
     </div>
     <div class="chk-group">
-      <div class="chk-group-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-cpu"/></svg></span> הדרכה על המוצר</div>
+      <div class="chk-group-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-cpu"/></svg></span> <span data-i18n="grpProduct">הדרכה על המוצר</span></div>
       <div class="chk-list">
-        <label class="chk-item" id="ci-13"><input type="checkbox" onchange="toggleCheck('ci-13')"><div><div class="chk-lbl">היכרות בסיסית עם המערכת</div></div></label>
-        <label class="chk-item" id="ci-14"><input type="checkbox" onchange="toggleCheck('ci-14')"><div><div class="chk-lbl">צ'אט — שימוש ויכולות</div></div></label>
-        <label class="chk-item" id="ci-15"><input type="checkbox" onchange="toggleCheck('ci-15')"><div><div class="chk-lbl">יצירת סוכן Cortex + Sprak</div></div></label>
-        <label class="chk-item" id="ci-16"><input type="checkbox" onchange="toggleCheck('ci-16')"><div><div class="chk-lbl">יצירת סוכן Workflow</div></div></label>
-        <label class="chk-item" id="ci-17"><input type="checkbox" onchange="toggleCheck('ci-17')"><div><div class="chk-lbl"> Skills, Triggers ויכולות של המוצר </div></div></label>
-        <label class="chk-item" id="ci-18"><input type="checkbox" onchange="toggleCheck('ci-18')"><div><div class="chk-lbl">Admin System</div></div></label>
-        <label class="chk-item" id="ci-19"><input type="checkbox" onchange="toggleCheck('ci-19')"><div><div class="chk-lbl">Jeen Documentation</div></div></label>
-        <label class="chk-item" id="ci-15-rec"><input type="checkbox" onchange="toggleCheck('ci-15-rec')"><div><div class="chk-lbl"><a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21fZXamGClsUG8qkMwFVU0O5c8JCmulqpHmG-aSBbSRRohe5SLT6jfRo09_9ocXD-X&driveItemId=0133DMVOVUKGXVF7GZ45EL2FICJN67I2N4&sitePath=https%3A%2F%2Fjeenai365-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2Finbar_jeen_ai%2FIQC0Ua9S_NnnSL0VAkt99Gm8AQTPAmv4T5cSgF6iBneesOU&fileUrl=https%3A%2F%2Fjeenai365-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2Finbar_jeen_ai%2FIQC0Ua9S_NnnSL0VAkt99Gm8AQTPAmv4T5cSgF6iBneesOU&iCalUid=040000008200E00074C5B7101A82E008000000001DFD8FD305CCDC010000000000000000100000002D09F74A1CA0184A965A104602F92B53&threadId=19%3Ameeting_MDE5NDAyN2QtNGZlNi00ZDVlLTg1ODgtNDc0Y2MxMzA1Zjg3%40thread.v2&organizerId=ea8d0734-2e9f-4f6d-9f7a-c166d90ddf3b&tenantId=65703eb9-76d8-4d4a-a438-2750a1401174&callId=28a14048-830b-40d2-b6f4-fbe44330a9d6&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;">
-                            הקלטה של ענבר על הפלטפורמה והמוצר ----- -> תלחצו!</a></div></div></label>
+        <label class="chk-item" id="ci-13"><input type="checkbox" onchange="toggleCheck('ci-13')"><div><div class="chk-lbl" data-i18n="chk13">היכרות בסיסית עם המערכת</div></div></label>
+        <label class="chk-item" id="ci-14"><input type="checkbox" onchange="toggleCheck('ci-14')"><div><div class="chk-lbl" data-i18n="chk14">צ'אט — שימוש ויכולות</div></div></label>
+        <label class="chk-item" id="ci-15"><input type="checkbox" onchange="toggleCheck('ci-15')"><div><div class="chk-lbl" data-i18n="chk15">יצירת סוכן Cortex + Sprak</div></div></label>
+        <label class="chk-item" id="ci-16"><input type="checkbox" onchange="toggleCheck('ci-16')"><div><div class="chk-lbl" data-i18n="chk16">יצירת סוכן Workflow</div></div></label>
+        <label class="chk-item" id="ci-17"><input type="checkbox" onchange="toggleCheck('ci-17')"><div><div class="chk-lbl" data-i18n="chk17"> Skills, Triggers ויכולות של המוצר </div></div></label>
+        <label class="chk-item" id="ci-18"><input type="checkbox" onchange="toggleCheck('ci-18')"><div><div class="chk-lbl" data-i18n="chk18">Admin System</div></div></label>
+        <label class="chk-item" id="ci-19"><input type="checkbox" onchange="toggleCheck('ci-19')"><div><div class="chk-lbl" data-i18n="chk19">Jeen Documentation</div></div></label>
+        <label class="chk-item" id="ci-inbar"><input type="checkbox" onchange="toggleCheck('ci-inbar')"><div><div class="chk-lbl"><a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21fZXamGClsUG8qkMwFVU0O5c8JCmulqpHmG-aSBbSRRohe5SLT6jfRo09_9ocXD-X&driveItemId=0133DMVOVUKGXVF7GZ45EL2FICJN67I2N4&sitePath=https%3A%2F%2Fjeenai365-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2Finbar_jeen_ai%2FIQC0Ua9S_NnnSL0VAkt99Gm8AQTPAmv4T5cSgF6iBneesOU&fileUrl=https%3A%2F%2Fjeenai365-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2Finbar_jeen_ai%2FIQC0Ua9S_NnnSL0VAkt99Gm8AQTPAmv4T5cSgF6iBneesOU&iCalUid=040000008200E00074C5B7101A82E008000000001DFD8FD305CCDC010000000000000000100000002D09F74A1CA0184A965A104602F92B53&threadId=19%3Ameeting_MDE5NDAyN2QtNGZlNi00ZDVlLTg1ODgtNDc0Y2MxMzA1Zjg3%40thread.v2&organizerId=ea8d0734-2e9f-4f6d-9f7a-c166d90ddf3b&tenantId=65703eb9-76d8-4d4a-a438-2750a1401174&callId=28a14048-830b-40d2-b6f4-fbe44330a9d6&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;" data-i18n="chkInbar">הקלטה של ענבר על הפלטפורמה והמוצר ----- -> תלחצו!</a></div></div></label>
       </div>
     </div>
     <div class="chk-group">
-      <div class="chk-group-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-building"/></svg></span> התנהלות ב-Jeen</div>
+      <div class="chk-group-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-building"/></svg></span> <span data-i18n="grpJeen">התנהלות ב-Jeen</span></div>
       <div class="chk-list">
-        <label class="chk-item" id="ci-16"><input type="checkbox" onchange="toggleCheck('ci-16')"><div><div class="chk-lbl">היסטוריה של Jeen</div></div></label>
-        <label class="chk-item" id="ci-18"><input type="checkbox" onchange="toggleCheck('ci-18')"><div><div class="chk-lbl">מחלה — תהליך דיווח</div></div></label>
-        <label class="chk-item" id="ci-19"><input type="checkbox" onchange="toggleCheck('ci-19')"><div><div class="chk-lbl">חופשה — תהליך אישור</div></div></label>
-        <label class="chk-item" id="ci-20"><input type="checkbox" onchange="toggleCheck('ci-20')"><div><div class="chk-lbl">ימים מהבית</div><div class="chk-sub">הסבר על הימים מהבית</div></div></label> 
-        <label class="chk-item" id="ci-21"><input type="checkbox" onchange="toggleCheck('ci-21')"><div><div class="chk-lbl">שיבוץ אצל לקוח</div><div class="chk-sub">הסבר על התהליך</div></div></label>
+        <label class="chk-item" id="ci-history"><input type="checkbox" onchange="toggleCheck('ci-history')"><div><div class="chk-lbl" data-i18n="chkHistory">היסטוריה של Jeen</div></div></label>
+        <label class="chk-item" id="ci-sick"><input type="checkbox" onchange="toggleCheck('ci-sick')"><div><div class="chk-lbl" data-i18n="chkSick">מחלה — תהליך דיווח</div></div></label>
+        <label class="chk-item" id="ci-vacation"><input type="checkbox" onchange="toggleCheck('ci-vacation')"><div><div class="chk-lbl" data-i18n="chkVacation">חופשה — תהליך אישור</div></div></label>
+        <label class="chk-item" id="ci-20"><input type="checkbox" onchange="toggleCheck('ci-20')"><div><div class="chk-lbl" data-i18n="chkWFHLbl">ימים מהבית</div><div class="chk-sub" data-i18n="chkWFHSub">הסבר על הימים מהבית</div></div></label>
+        <label class="chk-item" id="ci-21"><input type="checkbox" onchange="toggleCheck('ci-21')"><div><div class="chk-lbl" data-i18n="chkClientLbl">שיבוץ אצל לקוח</div><div class="chk-sub" data-i18n="chkClientSub">הסבר על התהליך</div></div></label>
       </div>
     </div>
   </section>
@@ -454,74 +439,434 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
   <section id="schedule" class="section">
     <div class="section-hd">
       <div class="section-ico" style="background:var(--warm-light);"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-calendar"/></svg></span></div>
-      <div class="section-title">לו"ז החפיפה המפורט</div>
+      <div class="section-title" data-i18n="scheduleTitle">לו"ז החפיפה המפורט</div>
     </div>
 
-    <div class="week-badge">חלק I — יום חפיפה ראשון</div>
+    <div class="week-badge" data-i18n="weekI">חלק I — יום חפיפה ראשון</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-1"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">קליטה ומנהלות</div><div class="tl-tags"><span class="tag tag-time">0.5 יום</span><span class="tag tag-owner">חופף מנהלתי</span></div></div><div class="tl-body">קבלת ציוד (מחשב, הרשאות), הגדרת סביבת עבודה-Buddy.</div><div class="tl-chk"><input type="checkbox" id="tl1c" onchange="markTl('tl-1',this)"><label for="tl1c">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-2"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">הכרת ה-buddy </div><div class="tl-tags"><span class="tag tag-time">0.5 יום</span><span class="tag tag-owner">חופף מנהלתי</span></div></div><div class="tl-body">תשבו לקפה תכירו</div><div class="tl-chk"><input type="checkbox" id="tl1c" onchange="markTl('tl-1',this)"><label for="tl1c">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-3"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">היום-יום של AI Solutions Engineer</div><div class="tl-tags"><span class="tag tag-time">0.5 יום</span><span class="tag tag-owner">Buddy</span></div></div><div class="tl-body">סקירה: איך נראה יום עבודה, ניהול משימות, פגישות סנכרון ודיווחים.</div><div class="tl-chk"><input type="checkbox" id="tl2c" onchange="markTl('tl-2',this)"><label for="tl2c">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-4"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">ממשקים חיצוניים</div><div class="tl-tags"><span class="tag tag-time">1 יום</span><span class="tag tag-owner">מנהל ישיר</span></div></div><div class="tl-body">סקירת עבודה מול צה"ל (ביטחוני) וממשקים אזרחיים.</div><div class="tl-chk"><input type="checkbox" id="tl4c" onchange="markTl('tl-4',this)"><label for="tl4c">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-1"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl1Step">קליטה ומנהלות</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerAdmin">חופף מנהלתי</span></div></div><div class="tl-body" data-i18n="tl1Body">קבלת ציוד (מחשב, הרשאות), הגדרת סביבת עבודה-Buddy.</div><div class="tl-chk"><input type="checkbox" id="tl1c" onchange="markTl('tl-1',this)"><label for="tl1c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-2"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl2Step">הכרת ה-buddy </div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerAdmin">חופף מנהלתי</span></div></div><div class="tl-body" data-i18n="tl2Body">תשבו לקפה תכירו</div><div class="tl-chk"><input type="checkbox" id="tl2c" onchange="markTl('tl-2',this)"><label for="tl2c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-3"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl3Step">היום-יום של AI Solutions Engineer</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerBuddy">Buddy</span></div></div><div class="tl-body" data-i18n="tl3Body">סקירה: איך נראה יום עבודה, ניהול משימות, פגישות סנכרון ודיווחים.</div><div class="tl-chk"><input type="checkbox" id="tl3c" onchange="markTl('tl-3',this)"><label for="tl3c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-4"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl4Step">ממשקים חיצוניים</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDay1">1 יום</span><span class="tag tag-owner" data-i18n="ownerMgr">מנהל ישיר</span></div></div><div class="tl-body" data-i18n="tl4Body">סקירת עבודה מול צה"ל (ביטחוני) וממשקים אזרחיים.</div><div class="tl-chk"><input type="checkbox" id="tl4c" onchange="markTl('tl-4',this)"><label for="tl4c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
 
-    <div class="week-badge">חלק II — יום חפיפה שני</div>
+    <div class="week-badge" data-i18n="weekII1">חלק II — יום חפיפה שני</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-6"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">Langflow Deep Dive</div><div class="tl-tags"><span class="tag tag-time">0.5 ימים</span><span class="tag tag-owner"> חופף מקצועי</span></div></div><div class="tl-body">הכרת הפלטפורמה לעומק, בניית Flows, דוגמאות מורכבות — התנסות מעשית ביצירת Agent ראשון.</div><div class="tl-chk"><input type="checkbox" id="tl6c" onchange="markTl('tl-6',this)"><label for="tl6c">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-6"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl6Step">Langflow Deep Dive</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDay05">0.5 ימים</span><span class="tag tag-owner" data-i18n="ownerProf"> חופף מקצועי</span></div></div><div class="tl-body" data-i18n="tl6Body">הכרת הפלטפורמה לעומק, בניית Flows, דוגמאות מורכבות — התנסות מעשית ביצירת Agent ראשון.</div><div class="tl-chk"><input type="checkbox" id="tl6c" onchange="markTl('tl-6',this)"><label for="tl6c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
 
-    <div class="week-badge w2" style="margin-top:24px;">חלק II — עומק טכני ופרקטיקה</div>
+    <div class="week-badge w2" style="margin-top:24px;" data-i18n="weekII2">חלק II — עומק טכני ופרקטיקה</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-5"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">LMS</div><div class="tl-tags"><span class="tag tag-time">2 יום</span><span class="tag tag-owner">חופף/ת מקצועי</span></div></div><div class="tl-body">היכרות מעמיקה עם המוצר ויצירת סוכנים , יכולות חדשות.</div><div class="tl-chk"><input type="checkbox" id="tl5c" onchange="markTl('tl-5',this)"><label for="tl5c">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-7"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">פרויקטונים</div><div class="tl-tags"><span class="tag tag-time">+2 יום</span><span class="tag tag-owner"> חופף מקצועי</span></div></div><div class="tl-body">כאן תיצרו סוכנים אמיתיים ותוכלו להיעזר בסרטונים ובJSON  שמצורף, לכל שאלה תרגישו לשאול את הbuddy ואת מי שתרצו כולם יעזרו לכם<details style="margin-top: 10px; background: var(--accent-light); border-radius: 6px; padding: 10px; border: 1px solid var(--border);"><summary style="cursor: pointer; font-weight: 600; color: var(--accent); outline: none; list-style-position: inside;">
-        רשימת סוכנים (Agents)</summary><ul style="margin-top: 8px; margin-right: 20px; color: var(--slate); font-size: 13px; display: flex; flex-direction: column; gap: 6px;">
-          <li style="background: var(--white); padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border);"><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%201%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding"target="_blank">Agent 1</a></li>
-          <li style="background: var(--white); padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border);"><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%202%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding"target="_blank">Agent 2</a></li>
-          <li style="background: var(--white); padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border);"><a href=""target="_blank">Agent 3</a></li></ul></details></div>
-          <div class="tl-chk"><input type="checkbox" id="tl7c" onchange="markTl('tl-7',this)"><label for="tl7c">סמן/י כשהושלם</label>
-          </div>
-        </div>
-      </div>
+      <div class="tl-item" id="tl-5"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl5Step">LMS</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDays2">2 יום</span><span class="tag tag-owner" data-i18n="ownerProf2">חופף/ת מקצועי</span></div></div><div class="tl-body" data-i18n="tl5Body">היכרות מעמיקה עם המוצר ויצירת סוכנים , יכולות חדשות.</div><div class="tl-chk"><input type="checkbox" id="tl5c" onchange="markTl('tl-5',this)"><label for="tl5c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-7"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl7Step">פרויקטונים</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDays2Plus">+2 יום</span><span class="tag tag-owner" data-i18n="ownerProf"> חופף מקצועי</span></div></div><div class="tl-body"><span data-i18n="tl7Body">כאן תיצרו סוכנים אמיתיים ותוכלו להיעזר בסרטונים ובJSON  שמצורף, לכל שאלה תרגישו לשאול את הbuddy ואת מי שתרצו כולם יעזרו לכם</span><details class="tl-agents"><summary data-i18n="tl7AgentsSummary">רשימת סוכנים (Agents)</summary><ul>
+          <li><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%201%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding" target="_blank">Agent 1</a></li>
+          <li><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%202%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding" target="_blank">Agent 2</a></li>
+          <li><a href="" target="_blank">Agent 3</a></li></ul></details></div><div class="tl-chk"><input type="checkbox" id="tl7c" onchange="markTl('tl-7',this)"><label for="tl7c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
 
-    <div class="week-badge w3" style="margin-top:24px;">חלק III — פרויקט גמר ושיחות</div>
+    <div class="week-badge w3" style="margin-top:24px;" data-i18n="weekIII">חלק III — פרויקט גמר ושיחות</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-8"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">פרויקט גמר </div><div class="tl-tags"><span class="tag tag-time">1.5 ימים</span><span class="tag tag-owner"> VP / Buddy </span></div></div><div class="tl-body">קבלת משימה אמיתית מהיום-יום — עבודה Hands-on על המערכת. המטרה לא רק "לעשות" אלא גם להציע שיפורים.</div><div class="tl-chk"><input type="checkbox" id="tl8c" onchange="markTl('tl-8',this)"><label for="tl8c">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-9"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step">סיכום וביקורת</div><div class="tl-tags"><span class="tag tag-time">0.5 יום</span><span class="tag tag-owner">חופף מקצועי + מנהל ישיר</span><span class="tag tag-note">פגישת סיכום רשמית</span></div></div><div class="tl-body">הצגת התרגיל, סיעור מוחות לשיפור/שימור, סגירת פערים — פגישת סיכום חפיפה רשמית.</div><div class="tl-chk"><input type="checkbox" id="tl9c" onchange="markTl('tl-9',this)"><label for="tl9c">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-10"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step"> שיחות אישיות</div><div class="tl-tags"><span class="tag tag-time">0.5 יום</span><span class="tag tag-owner">מנהל ישיר</span></div></div><div class="tl-body">שיחות עם המנהלים הישרים</div><div class="tl-chk"><input type="checkbox" id="tl10c" onchange="markTl('tl-10',this)"><label for="tl10c">סמן/י כשהושלם</label></div></div></div>
-    
+      <div class="tl-item" id="tl-8"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl8Step">פרויקט גמר </div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDays15">1.5 ימים</span><span class="tag tag-owner" data-i18n="ownerVp"> VP / Buddy </span></div></div><div class="tl-body" data-i18n="tl8Body">קבלת משימה אמיתית מהיום-יום — עבודה Hands-on על המערכת. המטרה לא רק "לעשות" אלא גם להציע שיפורים.</div><div class="tl-chk"><input type="checkbox" id="tl8c" onchange="markTl('tl-8',this)"><label for="tl8c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-9"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl9Step">סיכום וביקורת</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerProfMgr">חופף מקצועי + מנהל ישיר</span><span class="tag tag-note" data-i18n="noteSummary">פגישת סיכום רשמית</span></div></div><div class="tl-body" data-i18n="tl9Body">הצגת התרגיל, סיעור מוחות לשיפור/שימור, סגירת פערים — פגישת סיכום חפיפה רשמית.</div><div class="tl-chk"><input type="checkbox" id="tl9c" onchange="markTl('tl-9',this)"><label for="tl9c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-10"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl10Step"> שיחות אישיות</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerMgr">מנהל ישיר</span></div></div><div class="tl-body" data-i18n="tl10Body">שיחות עם המנהלים הישרים</div><div class="tl-chk"><input type="checkbox" id="tl10c" onchange="markTl('tl-10',this)"><label for="tl10c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
   </section>
 
   <section id="links" class="section">
     <div class="section-hd">
       <div class="section-ico" style="background:var(--accent-light);"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-link"/></svg></span></div>
-      <div class="section-title">לינקים שימושיים</div>
+      <div class="section-title" data-i18n="linksTitle">לינקים שימושיים</div>
     </div>
     <div class="links-grid">
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-mail"/></svg></span> Outlook</div><div class="link-list"><a href="https://support.microsoft.com/en-us/office/outlook-training-8a5b816d-9052-4190-a5eb-494512343cca" target="_blank">מדריכי התחברות ושימוש</a></div></div>
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-card"/></svg></span> סיבוס</div><div class="link-list"><a href="https://cibus.pluxee.co.il/users-support" target="_blank">שחזור סיסמה</a><a href="https://cibus.pluxee.co.il/users-support" target="_blank">תשלום בנייד</a><a href="https://cibus.pluxee.co.il/users-support" target="_blank">הזמנה עם וולט</a></div></div>
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-message"/></svg></span> Slack</div><div class="link-list"><a href="https://slack.com/help/articles/360059928654-How-to-use-Slack--your-quick-start-guide" target="_blank">מדריך התחברות ושימוש</a></div></div>
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clipboard"/></svg></span> Jira</div><div class="link-list"><a href="https://www.atlassian.com/software/jira/guides/getting-started/introduction" target="_blank">מדריך כללי</a><a href="https://jeenai365.sharepoint.com/:w:/r/sites/JEEN.AI/_layouts/15/Doc.aspx?sourcedoc=%7B11C97A2F-C0CA-44CC-A608-96EBC26C8406%7D&file=Workflow%20Process%20%E2%80%93%20Jeen%20AI%20%20Solutions%20%26%20Project%20Management%20Team.docx&action=default&mobileredirect=true" target="_blank">מדריך לשימוש ב-Jeen</a></div></div>
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clock"/></svg></span> Admiral</div><div class="link-list"><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI" target="_blank">מדריך התחברות ושימוש</a></div></div>
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span> HiBob</div><div class="link-list"><a href="https://app.hibob.com/login/home" target="_blank"> לינק לעץ חברה ותפקידים</a></div></div>
-      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clipboard"/></svg></span> Monday</div><div class="link-list"><a href="https://jeenai.monday.com/" target="_blank">כניסה</a></div></div>
-
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-mail"/></svg></span> Outlook</div><div class="link-list"><a href="https://support.microsoft.com/en-us/office/outlook-training-8a5b816d-9052-4190-a5eb-494512343cca" target="_blank" data-i18n="linkOutlook">מדריכי התחברות ושימוש</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-card"/></svg></span> <span data-i18n="cibusLabel">סיבוס</span></div><div class="link-list"><a href="https://cibus.pluxee.co.il/users-support" target="_blank" data-i18n="linkCibus1">שחזור סיסמה</a><a href="https://cibus.pluxee.co.il/users-support" target="_blank" data-i18n="linkCibus2">תשלום בנייד</a><a href="https://cibus.pluxee.co.il/users-support" target="_blank" data-i18n="linkCibus3">הזמנה עם וולט</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-message"/></svg></span> Slack</div><div class="link-list"><a href="https://slack.com/help/articles/360059928654-How-to-use-Slack--your-quick-start-guide" target="_blank" data-i18n="linkSlack">מדריך התחברות ושימוש</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clipboard"/></svg></span> Jira</div><div class="link-list"><a href="https://www.atlassian.com/software/jira/guides/getting-started/introduction" target="_blank" data-i18n="linkJira1">מדריך כללי</a><a href="https://jeenai365.sharepoint.com/:w:/r/sites/JEEN.AI/_layouts/15/Doc.aspx?sourcedoc=%7B11C97A2F-C0CA-44CC-A608-96EBC26C8406%7D&file=Workflow%20Process%20%E2%80%93%20Jeen%20AI%20%20Solutions%20%26%20Project%20Management%20Team.docx&action=default&mobileredirect=true" target="_blank" data-i18n="linkJira2">מדריך לשימוש ב-Jeen</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clock"/></svg></span> Admiral</div><div class="link-list"><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI" target="_blank" data-i18n="linkAdmiral">מדריך התחברות ושימוש</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span> HiBob</div><div class="link-list"><a href="https://app.hibob.com/login/home" target="_blank" data-i18n="linkHibob"> לינק לעץ חברה ותפקידים</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clipboard"/></svg></span> Monday</div><div class="link-list"><a href="https://jeenai.monday.com/" target="_blank" data-i18n="linkMonday">כניסה</a></div></div>
     </div>
   </section>
 
   <section id="tips" class="section">
     <div class="section-hd">
       <div class="section-ico" style="background:var(--warm-light);"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-light"/></svg></span></div>
-      <div class="section-title">טיפים חשובים</div>
+      <div class="section-title" data-i18n="tipsTitle">טיפים חשובים</div>
     </div>
-    <div class="ibox blue" style="margin-bottom:12px;"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span> ה-Buddy הוא הכתובת הראשונה</strong>בכל נושא שלא מופיע בלו"ז — פנו ל-Buddy  הוא/היא יעזרו בהכל.</div>
-    <div class="ibox teal" style="margin-bottom:12px;"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span>  פרויקט גמר — חשבו ביקורתית</strong></div>
-    <div class="ibox amber"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-trending"/></svg></span> מה אחרי החפיפה?</strong>המשך ליווי דרך מישוב חודשי/רבעוני ותוכנית פיתוח אישי — החפיפה היא נקודת התחלה.</div>
+    <div class="ibox blue" style="margin-bottom:12px;"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span> <span data-i18n="tip1Title">ה-Buddy הוא הכתובת הראשונה</span></strong><span data-i18n="tip1Body">בכל נושא שלא מופיע בלו"ז — פנו ל-Buddy  הוא/היא יעזרו בהכל.</span></div>
+    <div class="ibox teal" style="margin-bottom:12px;"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span> <span data-i18n="tip2Title">  פרויקט גמר — חשבו ביקורתית</span></strong></div>
+    <div class="ibox amber"><strong><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-trending"/></svg></span> <span data-i18n="tip3Title">מה אחרי החפיפה?</span></strong><span data-i18n="tip3Body">המשך ליווי דרך מישוב חודשי/רבעוני ותוכנית פיתוח אישי — החפיפה היא נקודת התחלה.</span></div>
   </section>
 </main>
 
 <script>
+/* =============== I18N =============== */
+const TRANSLATIONS = {
+  he: {
+    pageTitle: "JeenAI Onboarding AI Solutions Engineer",
+    brandTitle: "Jeen Onboarding",
+    brandSub: "AI Solutions Engineer",
+    searchPlaceholder: "חיפוש בתוכן...",
+    searchResults: "תוצאות",
+
+    navQuick: "ניווט מהיר",
+    navWelcome: "ברוכים הבאים",
+    navOverview: "סקירה כללית",
+    navContacts: "אנשי קשר",
+    navContent: "תוכן",
+    navChecklist: "צ'ק ליסט",
+    navSchedule: "לו\"ז החפיפה",
+    navLinks: "לינקים שימושיים",
+    navInfo: "מידע",
+    navTips: "טיפים חשובים",
+
+    noResults: "לא נמצאו תוצאות לחיפוש הזה",
+
+    heroTag: "Jeen AI · חפיפה מקצועית",
+    heroTitle: "ברוכים הבאים!",
+    heroSubtitle: "AI Solutions Engineer",
+    heroWelcomeHtml: "תוכנית החפיפה הזו נבנתה כדי שתרגיש/י בנוח, בטוח/ה ומוכן/ה לקחת את ה-AI Solutions Engineer שבך לדרגה הבאה.<br>  יש אנשים מדהימים לצדך בכל שלב — ואת/ה לא לבד.",
+    pill1: "שבועיים · 10 ימי עבודה",
+    pill2: "חלק 1 — יסודות וממשקים",
+    pill3: "חלק 2 — טכני ופרקטיקה",
+    pill4: "חלק 3 — פרויקט גמר ושיחות",
+
+    overviewTitle: "סקירה כללית — תחומי מיקוד",
+    box1Title: "אדמיניסטרציה ומנהלות",
+    box1Body: "ציוד, הגדרות, הכרת ה-Buddy והבנת היום-יום בתפקיד",
+    box2Title: "מבנה ארגוני",
+    box2Body: "CTO, ראשי צוותים, ממשקים חיצוניים — ביטחוני ואזרחי",
+    box3Title: "ליבה טכנולוגית",
+    box3Body: "LMS 5.1, Langflow, מעטפת הפיתוח וסביבת העבודה",
+    box4Title: "התנסות מעשית",
+    box4Body: "פרויקטים אמיתיים + תרגיל מסכם Hands-on עם ביקורת",
+
+    peopleTitle: "האנשים שיעמדו לצדך",
+    person1Name: "Buddy",
+    person1Role: "הכתובת הראשונה לכל שאלה — מלווה לאורך כל תהליך החפיפה",
+    person2Name: "CTO וראשי צוותים",
+    person2Role: "פגישות היכרות, הבנת הארגון וכיוון אסטרטגי",
+    person3Name: "נציג/ה QA ו-DevOps",
+    person3Role: "חשיפה לתשתית ולתהליכי איכות",
+    person4Name: "דורון / אייל / VP",
+    person4Role: "הנחיית הפרויקט הגמר",
+    person5Name: "ממשקים חיצוניים",
+    person5Role: "צה\"ל, בנק מזרחי (תלוי תקופה)",
+
+    checklistTitle: "צ'ק ליסט עובד/ת חדש/ה",
+    checklistIntro: "סמנו כל סעיף כשהוא הושלם — כך לא יפול שום דבר בין הכסאות.",
+    progressLabel: "התקדמות כללית",
+    progressItems: "סעיפים",
+    resetBtn: "איפוס סימונים שמורים",
+    resetConfirm: "למחוק את כל הסימונים שנשמרו בדפדפן במכשיר זה?",
+
+    grpAdmin: "מנהלות",
+    chk1: "חתימה על ציוד",
+    chk2Lbl: "Outlook", chk2Sub: "הגדרת מייל ארגוני",
+    chk3Lbl: "HiBob", chk3Sub: "מערכת HR ארגונית",
+    chk4Lbl: "סיבוס", chk4Sub: "הגדרת חשבון ארוחות",
+    chk5Lbl: "Slack", chk5Sub: "תקשורת פנים-ארגונית",
+    chk6Lbl: "Jira", chk6Sub: "ניהול משימות ופרויקטים",
+    chk7Lbl: "Admiral", chk7Sub: "מעקב שעות",
+    chk8Lbl: "SharePoint ארגוני", chk8Sub: "ניהול ידע",
+    chk9Lbl: "Monday ארגוני", chk9Sub: "ניהול ידע",
+    chk10Lbl: "קבוצות Whatsapp & Outlook", chk10Sub: "ניהול ידע",
+    chkPgadmin: "להורדה של pgadmin ------ -> תלחצו",
+    chk12: "סיווג ביטחוני",
+
+    grpProduct: "הדרכה על המוצר",
+    chk13: "היכרות בסיסית עם המערכת",
+    chk14: "צ'אט — שימוש ויכולות",
+    chk15: "יצירת סוכן Cortex + Sprak",
+    chk16: "יצירת סוכן Workflow",
+    chk17: " Skills, Triggers ויכולות של המוצר ",
+    chk18: "Admin System",
+    chk19: "Jeen Documentation",
+    chkInbar: "הקלטה של ענבר על הפלטפורמה והמוצר ----- -> תלחצו!",
+
+    grpJeen: "התנהלות ב-Jeen",
+    chkHistory: "היסטוריה של Jeen",
+    chkSick: "מחלה — תהליך דיווח",
+    chkVacation: "חופשה — תהליך אישור",
+    chkWFHLbl: "ימים מהבית", chkWFHSub: "הסבר על הימים מהבית",
+    chkClientLbl: "שיבוץ אצל לקוח", chkClientSub: "הסבר על התהליך",
+
+    scheduleTitle: "לו\"ז החפיפה המפורט",
+    weekI: "חלק I — יום חפיפה ראשון",
+    weekII1: "חלק II — יום חפיפה שני",
+    weekII2: "חלק II — עומק טכני ופרקטיקה",
+    weekIII: "חלק III — פרויקט גמר ושיחות",
+    markDone: "סמן/י כשהושלם",
+    tagDayHalf: "0.5 יום",
+    tagDay1: "1 יום",
+    tagDay05: "0.5 ימים",
+    tagDays2: "2 יום",
+    tagDays2Plus: "+2 יום",
+    tagDays15: "1.5 ימים",
+    ownerAdmin: "חופף מנהלתי",
+    ownerBuddy: "Buddy",
+    ownerProf: " חופף מקצועי",
+    ownerProf2: "חופף/ת מקצועי",
+    ownerProfMgr: "חופף מקצועי + מנהל ישיר",
+    ownerMgr: "מנהל ישיר",
+    ownerVp: " VP / Buddy ",
+    noteSummary: "פגישת סיכום רשמית",
+
+    tl1Step: "קליטה ומנהלות",
+    tl1Body: "קבלת ציוד (מחשב, הרשאות), הגדרת סביבת עבודה-Buddy.",
+    tl2Step: "הכרת ה-buddy",
+    tl2Body: "תשבו לקפה תכירו",
+    tl3Step: "היום-יום של AI Solutions Engineer",
+    tl3Body: "סקירה: איך נראה יום עבודה, ניהול משימות, פגישות סנכרון ודיווחים.",
+    tl4Step: "ממשקים חיצוניים",
+    tl4Body: "סקירת עבודה מול צה\"ל (ביטחוני) וממשקים אזרחיים.",
+    tl5Step: "LMS",
+    tl5Body: "היכרות מעמיקה עם המוצר ויצירת סוכנים , יכולות חדשות.",
+    tl6Step: "Langflow Deep Dive",
+    tl6Body: "הכרת הפלטפורמה לעומק, בניית Flows, דוגמאות מורכבות — התנסות מעשית ביצירת Agent ראשון.",
+    tl7Step: "פרויקטונים",
+    tl7Body: "כאן תיצרו סוכנים אמיתיים ותוכלו להיעזר בסרטונים ובJSON  שמצורף, לכל שאלה תרגישו לשאול את הbuddy ואת מי שתרצו כולם יעזרו לכם",
+    tl7AgentsSummary: "רשימת סוכנים (Agents)",
+    tl8Step: "פרויקט גמר",
+    tl8Body: "קבלת משימה אמיתית מהיום-יום — עבודה Hands-on על המערכת. המטרה לא רק \"לעשות\" אלא גם להציע שיפורים.",
+    tl9Step: "סיכום וביקורת",
+    tl9Body: "הצגת התרגיל, סיעור מוחות לשיפור/שימור, סגירת פערים — פגישת סיכום חפיפה רשמית.",
+    tl10Step: "שיחות אישיות",
+    tl10Body: "שיחות עם המנהלים הישרים",
+
+    linksTitle: "לינקים שימושיים",
+    cibusLabel: "סיבוס",
+    linkOutlook: "מדריכי התחברות ושימוש",
+    linkCibus1: "שחזור סיסמה",
+    linkCibus2: "תשלום בנייד",
+    linkCibus3: "הזמנה עם וולט",
+    linkSlack: "מדריך התחברות ושימוש",
+    linkJira1: "מדריך כללי",
+    linkJira2: "מדריך לשימוש ב-Jeen",
+    linkAdmiral: "מדריך התחברות ושימוש",
+    linkHibob: "לינק לעץ חברה ותפקידים",
+    linkMonday: "כניסה",
+
+    tipsTitle: "טיפים חשובים",
+    tip1Title: "ה-Buddy הוא הכתובת הראשונה",
+    tip1Body: "בכל נושא שלא מופיע בלו\"ז — פנו ל-Buddy  הוא/היא יעזרו בהכל.",
+    tip2Title: "פרויקט גמר — חשבו ביקורתית",
+    tip3Title: "מה אחרי החפיפה?",
+    tip3Body: "המשך ליווי דרך מישוב חודשי/רבעוני ותוכנית פיתוח אישי — החפיפה היא נקודת התחלה.",
+
+    langSwitchLabel: "EN",
+    langSwitchTitle: "Switch to English"
+  },
+  en: {
+    pageTitle: "JeenAI Onboarding AI Solutions Engineer",
+    brandTitle: "Jeen Onboarding",
+    brandSub: "AI Solutions Engineer",
+    searchPlaceholder: "Search content...",
+    searchResults: "results",
+
+    navQuick: "Quick Navigation",
+    navWelcome: "Welcome",
+    navOverview: "Overview",
+    navContacts: "Contacts",
+    navContent: "Content",
+    navChecklist: "Checklist",
+    navSchedule: "Onboarding Schedule",
+    navLinks: "Useful Links",
+    navInfo: "Info",
+    navTips: "Important Tips",
+
+    noResults: "No results found for this search",
+
+    heroTag: "Jeen AI · Professional Onboarding",
+    heroTitle: "Welcome!",
+    heroSubtitle: "AI Solutions Engineer",
+    heroWelcomeHtml: "This onboarding program was built so you'll feel comfortable, confident, and ready to take the AI Solutions Engineer in you to the next level.<br> Amazing people are by your side every step of the way — you're not alone.",
+    pill1: "Two weeks · 10 working days",
+    pill2: "Part 1 — Fundamentals & Interfaces",
+    pill3: "Part 2 — Technical & Practice",
+    pill4: "Part 3 — Final Project & Talks",
+
+    overviewTitle: "Overview — Focus Areas",
+    box1Title: "Administration",
+    box1Body: "Equipment, setup, meeting your Buddy, and understanding the day-to-day in the role",
+    box2Title: "Organizational Structure",
+    box2Body: "CTO, team leads, external interfaces — defense and civilian",
+    box3Title: "Technology Core",
+    box3Body: "LMS 5.1, Langflow, the development stack and work environment",
+    box4Title: "Hands-on Experience",
+    box4Body: "Real projects + concluding hands-on exercise with review",
+
+    peopleTitle: "The People by Your Side",
+    person1Name: "Buddy",
+    person1Role: "Your first point of contact for any question — supports you throughout the onboarding process",
+    person2Name: "CTO & Team Leads",
+    person2Role: "Intro meetings, understanding the organization and strategic direction",
+    person3Name: "QA & DevOps Rep",
+    person3Role: "Exposure to infrastructure and quality processes",
+    person4Name: "Doron / Eyal / VP",
+    person4Role: "Final project guidance",
+    person5Name: "External Interfaces",
+    person5Role: "IDF, Mizrahi Bank (period dependent)",
+
+    checklistTitle: "New Employee Checklist",
+    checklistIntro: "Check each item once completed — so nothing falls through the cracks.",
+    progressLabel: "Overall Progress",
+    progressItems: "items",
+    resetBtn: "Reset saved progress",
+    resetConfirm: "Delete all saved progress on this device in this browser?",
+
+    grpAdmin: "Administration",
+    chk1: "Equipment sign-off",
+    chk2Lbl: "Outlook", chk2Sub: "Organizational email setup",
+    chk3Lbl: "HiBob", chk3Sub: "Organizational HR system",
+    chk4Lbl: "Cibus", chk4Sub: "Meal account setup",
+    chk5Lbl: "Slack", chk5Sub: "Internal communication",
+    chk6Lbl: "Jira", chk6Sub: "Task and project management",
+    chk7Lbl: "Admiral", chk7Sub: "Time tracking",
+    chk8Lbl: "Organizational SharePoint", chk8Sub: "Knowledge management",
+    chk9Lbl: "Organizational Monday", chk9Sub: "Knowledge management",
+    chk10Lbl: "WhatsApp & Outlook groups", chk10Sub: "Knowledge management",
+    chkPgadmin: "Download pgAdmin ------ -> Click here",
+    chk12: "Security clearance",
+
+    grpProduct: "Product Training",
+    chk13: "Basic system overview",
+    chk14: "Chat — usage and capabilities",
+    chk15: "Creating a Cortex + Spark agent",
+    chk16: "Creating a Workflow agent",
+    chk17: "Skills, Triggers and product capabilities",
+    chk18: "Admin System",
+    chk19: "Jeen Documentation",
+    chkInbar: "Inbar's recording about the platform and product ----- -> Click here!",
+
+    grpJeen: "Working at Jeen",
+    chkHistory: "History of Jeen",
+    chkSick: "Sick leave — reporting process",
+    chkVacation: "Vacation — approval process",
+    chkWFHLbl: "Work from home days", chkWFHSub: "Explanation of work-from-home days",
+    chkClientLbl: "Client placement", chkClientSub: "Explanation of the process",
+
+    scheduleTitle: "Detailed Onboarding Schedule",
+    weekI: "Part I — First Onboarding Day",
+    weekII1: "Part II — Second Onboarding Day",
+    weekII2: "Part II — Technical Depth & Practice",
+    weekIII: "Part III — Final Project & Talks",
+    markDone: "Mark when completed",
+    tagDayHalf: "0.5 day",
+    tagDay1: "1 day",
+    tagDay05: "0.5 day",
+    tagDays2: "2 days",
+    tagDays2Plus: "+2 days",
+    tagDays15: "1.5 days",
+    ownerAdmin: "Administrative buddy",
+    ownerBuddy: "Buddy",
+    ownerProf: "Professional buddy",
+    ownerProf2: "Professional buddy",
+    ownerProfMgr: "Professional buddy + direct manager",
+    ownerMgr: "Direct manager",
+    ownerVp: "VP / Buddy",
+    noteSummary: "Official summary meeting",
+
+    tl1Step: "Onboarding & Administration",
+    tl1Body: "Receiving equipment (computer, permissions), work environment setup with Buddy.",
+    tl2Step: "Meet your Buddy",
+    tl2Body: "Sit down for coffee and get to know each other.",
+    tl3Step: "Day-to-day of an AI Solutions Engineer",
+    tl3Body: "Overview: what a workday looks like, task management, sync meetings and reporting.",
+    tl4Step: "External Interfaces",
+    tl4Body: "Overview of work with IDF (defense) and civilian interfaces.",
+    tl5Step: "LMS",
+    tl5Body: "In-depth product overview, building agents, new capabilities.",
+    tl6Step: "Langflow Deep Dive",
+    tl6Body: "In-depth platform overview, building Flows, complex examples — hands-on experience creating your first Agent.",
+    tl7Step: "Mini Projects",
+    tl7Body: "Here you'll build real agents — use the attached videos and JSON files, and feel free to ask the Buddy or anyone else any question; everyone is here to help.",
+    tl7AgentsSummary: "List of Agents",
+    tl8Step: "Final Project",
+    tl8Body: "Receiving a real task from the day-to-day — hands-on work on the system. The goal isn't just to \"do\" but also to suggest improvements.",
+    tl9Step: "Summary & Review",
+    tl9Body: "Presenting the exercise, brainstorming for improvement/retention, closing gaps — official onboarding summary meeting.",
+    tl10Step: "Personal Talks",
+    tl10Body: "Conversations with direct managers.",
+
+    linksTitle: "Useful Links",
+    cibusLabel: "Cibus",
+    linkOutlook: "Login and usage guides",
+    linkCibus1: "Password recovery",
+    linkCibus2: "Mobile payment",
+    linkCibus3: "Ordering with Wolt",
+    linkSlack: "Login and usage guide",
+    linkJira1: "General guide",
+    linkJira2: "Jeen-specific usage guide",
+    linkAdmiral: "Login and usage guide",
+    linkHibob: "Company tree and roles",
+    linkMonday: "Login",
+
+    tipsTitle: "Important Tips",
+    tip1Title: "Your Buddy is the first point of contact",
+    tip1Body: "For anything not on the schedule — reach out to your Buddy, they'll help with everything.",
+    tip2Title: "Final project — think critically",
+    tip3Title: "What happens after onboarding?",
+    tip3Body: "Continued support via monthly/quarterly feedback and a personal development plan — onboarding is just the starting point.",
+
+    langSwitchLabel: "עברית",
+    langSwitchTitle: "עבור לעברית"
+  }
+};
+
+const LANG_KEY = 'jeen-onboarding-lang';
+let currentLang = 'he';
+
+function applyTranslations(lang) {
+  const t = TRANSLATIONS[lang];
+  if (!t) return;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+  document.title = t.pageTitle;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if (t[key] !== undefined) el.title = t[key];
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
+  });
+}
+
+function setLanguage(lang) {
+  if (!TRANSLATIONS[lang]) lang = 'he';
+  currentLang = lang;
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+
+  const input = document.getElementById('search-input');
+  if (input) input.value = '';
+  Object.keys(originals).forEach(k => delete originals[k]);
+  document.getElementById('no-results').style.display = 'none';
+  document.getElementById('search-count').style.display = 'none';
+  document.querySelectorAll('.section').forEach(s => { s.style.display = ''; });
+
+  applyTranslations(lang);
+  updateProgress();
+}
+
+function toggleLanguage() {
+  setLanguage(currentLang === 'he' ? 'en' : 'he');
+}
+
+/* =============== PROGRESS / CHECKLIST =============== */
 const STORAGE_KEY = 'jeen-onboarding-ai-se-progress-v1';
 
 function saveProgressToLocal() {
@@ -570,7 +915,8 @@ function applySavedProgress() {
 }
 
 function resetSavedProgress() {
-  if (!confirm('למחוק את כל הסימונים שנשמרו בדפדפן במכשיר זה?')) return;
+  const t = TRANSLATIONS[currentLang];
+  if (!confirm(t.resetConfirm)) return;
   try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
   document.querySelectorAll('.chk-item[id]').forEach(function (lab) {
     const inp = lab.querySelector('input[type="checkbox"]');
@@ -597,8 +943,10 @@ function updateProgress() {
   const total = document.querySelectorAll('.chk-item[id]').length;
   const n = document.querySelectorAll('.chk-item input:checked').length;
   const pct = total ? Math.round(n / total * 100) : 0;
-  document.getElementById('prog-bar').style.width = pct + '%';
-  document.getElementById('prog-text').textContent = n + ' / ' + total + ' סעיפים';
+  const bar = document.getElementById('prog-bar');
+  const text = document.getElementById('prog-text');
+  if (bar) bar.style.width = pct + '%';
+  if (text) text.textContent = n + ' / ' + total + ' ' + TRANSLATIONS[currentLang].progressItems;
 }
 
 function markTl(id, cb) {
@@ -613,9 +961,14 @@ function setActive(el) {
   el.classList.add('active');
 }
 
-document.addEventListener('DOMContentLoaded', function () { applySavedProgress(); });
+document.addEventListener('DOMContentLoaded', function () {
+  let saved = 'he';
+  try { saved = localStorage.getItem(LANG_KEY) || 'he'; } catch (e) {}
+  setLanguage(saved);
+  applySavedProgress();
+});
 
-// Search
+/* =============== SEARCH =============== */
 const originals = {};
 function doSearch(q) {
   const sections = document.querySelectorAll('.section');
@@ -624,6 +977,7 @@ function doSearch(q) {
   q = q.trim();
   if (!q) {
     sections.forEach(s => { s.style.display = ''; if (originals[s.id]) s.innerHTML = originals[s.id]; });
+    Object.keys(originals).forEach(k => delete originals[k]);
     applySavedProgress();
     noRes.style.display = 'none'; countEl.style.display = 'none'; return;
   }
@@ -638,7 +992,7 @@ function doSearch(q) {
   });
   noRes.style.display = visible ? 'none' : 'flex';
   countEl.style.display = total ? 'inline' : 'none';
-  countEl.textContent = total + ' תוצאות';
+  countEl.textContent = total + ' ' + TRANSLATIONS[currentLang].searchResults;
 }
 function highlightNode(node, re) {
   if (node.nodeType === 3) {
@@ -654,7 +1008,6 @@ function highlightNode(node, re) {
   }
 }
 
-// Scroll spy
 window.addEventListener('scroll', () => {
   let cur = '';
   document.querySelectorAll('.section[id]').forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
