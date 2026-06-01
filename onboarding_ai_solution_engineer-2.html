@@ -95,6 +95,20 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 .search-icon.icon svg { width: 16px; height: 16px; }
 #search-count { position: absolute; left: 36px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); display: none; }
 
+/* LANGUAGE SWITCH */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 100px; padding: 5px 12px;
+  font-family: 'Heebo', sans-serif; font-size: 12.5px; font-weight: 600;
+  color: var(--slate); text-decoration: none; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s, box-shadow .15s;
+  white-space: nowrap; flex-shrink: 0;
+}
+.lang-switch:hover { background: var(--accent-light); border-color: rgba(98, 69, 97, 0.35); color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.lang-switch .icon svg { width: 14px; height: 14px; }
+.lang-switch .icon { color: var(--accent); }
+
 /* SIDEBAR */
 .sidebar {
   position: fixed; top: var(--header-h); right: 0; width: var(--sidebar-w);
@@ -305,6 +319,10 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
     <span class="search-icon icon icon-muted" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search"/></svg></span>
     <span id="search-count"></span>
   </div>
+  <a class="lang-switch" href="onboarding_ai_solution_engineer-2-en.html" title="Switch to English" aria-label="Switch to English">
+    <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-globe"/></svg></span>
+    <span>EN</span>
+  </a>
 </header>
 
 <nav class="sidebar">
