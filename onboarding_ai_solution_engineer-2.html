@@ -203,9 +203,14 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 .tl-step { font-weight: 700; font-size: 14.5px; color: var(--text); }
 .tl-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tag { font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
-.tag-time { background: var(--accent-light); color: var(--accent); }
-.tag-owner { background: var(--slate-light); color: var(--slate); }
-.tag-note { background: var(--warm-light); color: var(--warm); }
+.tag-owner-admin { background: #FCECE9; color: #C85542; }
+.tag-owner-buddy { background: #FFF4E5; color: #C48800; }
+.tag-owner-mgr { background: #F5E6FA; color: #8854A0; }
+.tag-owner-prof { background: #FAE5DC; color: #D45A48; }
+.tag-owner-prof2 { background: #FFF0D4; color: #B87A10; }
+.tag-owner-vp { background: #EDE0F5; color: #9A5CB0; }
+.tag-owner-prof-mgr { background: #FCE8F0; color: #7A4558; }
+.tag-note { background: #FFF8E8; color: #D49530; }
 .tl-body { font-size: 13px; color: var(--slate); line-height: 1.65; }
 .tl-chk { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
 .tl-chk input { accent-color: var(--accent); cursor: pointer; }
@@ -451,9 +456,7 @@ body.sidebar-open { overflow: hidden; }
     <div class="people">
       <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-user"/></svg></span></div><div><div class="person-name" data-i18n="person1Name">Buddy</div><div class="person-role" data-i18n="person1Role">הכתובת הראשונה לכל שאלה — מלווה לאורך כל תהליך החפיפה</div></div></div>
       <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-landmark"/></svg></span></div><div><div class="person-name" data-i18n="person2Name">CTO וראשי צוותים</div><div class="person-role" data-i18n="person2Role">פגישות היכרות, הבנת הארגון וכיוון אסטרטגי</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-search"/></svg></span></div><div><div class="person-name" data-i18n="person3Name">נציג/ה QA ו-DevOps</div><div class="person-role" data-i18n="person3Role">חשיפה לתשתית ולתהליכי איכות</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span></div><div><div class="person-name" data-i18n="person4Name">דורון / אייל / VP</div><div class="person-role" data-i18n="person4Role">הנחיית הפרויקט הגמר</div></div></div>
-      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-globe"/></svg></span></div><div><div class="person-name" data-i18n="person5Name">ממשקים חיצוניים</div><div class="person-role" data-i18n="person5Role">צה"ל, בנק מזרחי (תלוי תקופה)</div></div></div>
+      <div class="person"><div class="person-av"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-target"/></svg></span></div><div><div class="person-name" data-i18n="person4Name">VP / מנהל ישיר</div><div class="person-role" data-i18n="person4Role">הנחיית הפרויקט הגמר</div></div></div>
     </div>
   </section>
 
@@ -524,21 +527,21 @@ body.sidebar-open { overflow: hidden; }
 
     <div class="week-badge" data-i18n="weekI">חלק I — יום חפיפה ראשון</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-1"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl1Step">קליטה ומנהלות</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerAdmin">חופף מנהלתי</span></div></div><div class="tl-body" data-i18n="tl1Body">קבלת ציוד (מחשב, הרשאות), הגדרת סביבת עבודה-Buddy.</div><div class="tl-chk"><input type="checkbox" id="tl1c" onchange="markTl('tl-1',this)"><label for="tl1c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-2"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl2Step">הכרת ה-buddy </div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerAdmin">חופף מנהלתי</span></div></div><div class="tl-body" data-i18n="tl2Body">תשבו לקפה תכירו</div><div class="tl-chk"><input type="checkbox" id="tl2c" onchange="markTl('tl-2',this)"><label for="tl2c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-3"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl3Step">היום-יום של AI Solutions Engineer</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerBuddy">Buddy</span></div></div><div class="tl-body" data-i18n="tl3Body">סקירה: איך נראה יום עבודה, ניהול משימות, פגישות סנכרון ודיווחים.</div><div class="tl-chk"><input type="checkbox" id="tl3c" onchange="markTl('tl-3',this)"><label for="tl3c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-4"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl4Step">ממשקים חיצוניים</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDay1">1 יום</span><span class="tag tag-owner" data-i18n="ownerMgr">מנהל ישיר</span></div></div><div class="tl-body" data-i18n="tl4Body">סקירת עבודה מול צה"ל (ביטחוני) וממשקים אזרחיים.</div><div class="tl-chk"><input type="checkbox" id="tl4c" onchange="markTl('tl-4',this)"><label for="tl4c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-1"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl1Step">קליטה ומנהלות</div><div class="tl-tags"><span class="tag tag-owner-admin" data-i18n="ownerAdmin">חופף מנהלתי</span></div></div><div class="tl-body" data-i18n="tl1Body">קבלת ציוד (מחשב, הרשאות), הגדרת סביבת עבודה-Buddy.</div><div class="tl-chk"><input type="checkbox" id="tl1c" onchange="markTl('tl-1',this)"><label for="tl1c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-2"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl2Step">הכרת ה-buddy </div><div class="tl-tags"><span class="tag tag-owner-admin" data-i18n="ownerAdmin">חופף מנהלתי</span></div></div><div class="tl-body" data-i18n="tl2Body">תשבו לקפה תכירו</div><div class="tl-chk"><input type="checkbox" id="tl2c" onchange="markTl('tl-2',this)"><label for="tl2c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-3"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl3Step">היום-יום של AI Solutions Engineer</div><div class="tl-tags"><span class="tag tag-owner-buddy" data-i18n="ownerBuddy">Buddy</span></div></div><div class="tl-body" data-i18n="tl3Body">סקירה: איך נראה יום עבודה, ניהול משימות, פגישות סנכרון ודיווחים.</div><div class="tl-chk"><input type="checkbox" id="tl3c" onchange="markTl('tl-3',this)"><label for="tl3c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-4"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl4Step">ממשקים חיצוניים</div><div class="tl-tags"><span class="tag tag-owner-mgr" data-i18n="ownerMgr">מנהל ישיר</span></div></div><div class="tl-body" data-i18n="tl4Body">סקירת עבודה מול צה"ל (ביטחוני) וממשקים אזרחיים.</div><div class="tl-chk"><input type="checkbox" id="tl4c" onchange="markTl('tl-4',this)"><label for="tl4c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
 
     <div class="week-badge" data-i18n="weekI1">חלק I — יום חפיפה שני</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-6"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl6Step">Langflow Deep Dive</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDay05">0.5 ימים</span><span class="tag tag-owner" data-i18n="ownerProf"> חופף מקצועי</span></div></div><div class="tl-body" data-i18n="tl6Body">הכרת הפלטפורמה לעומק, בניית Flows, דוגמאות מורכבות — התנסות מעשית ביצירת Agent ראשון.</div><div class="tl-chk"><input type="checkbox" id="tl6c" onchange="markTl('tl-6',this)"><label for="tl6c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-6"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl6Step">Langflow Deep Dive</div><div class="tl-tags"><span class="tag tag-owner-prof" data-i18n="ownerProf"> חופף מקצועי</span></div></div><div class="tl-body" data-i18n="tl6Body">הכרת הפלטפורמה לעומק, בניית Flows, דוגמאות מורכבות — התנסות מעשית ביצירת Agent ראשון.</div><div class="tl-chk"><input type="checkbox" id="tl6c" onchange="markTl('tl-6',this)"><label for="tl6c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
 
     <div class="week-badge w2" style="margin-top:24px;" data-i18n="weekII2">חלק II — עומק טכני ופרקטיקה</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-5"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl5Step">LMS</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDays2">2 יום</span><span class="tag tag-owner" data-i18n="ownerProf2">חופף/ת מקצועי</span></div></div><div class="tl-body" data-i18n="tl5Body">היכרות מעמיקה עם המוצר ויצירת סוכנים , יכולות חדשות.</div><div class="tl-chk"><input type="checkbox" id="tl5c" onchange="markTl('tl-5',this)"><label for="tl5c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-7"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl7Step">פרויקטונים</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDays2Plus">+2 יום</span><span class="tag tag-owner" data-i18n="ownerProf"> חופף מקצועי</span></div></div><div class="tl-body"><span data-i18n="tl7Body">כאן תיצרו סוכנים אמיתיים ותוכלו להיעזר בסרטונים ובJSON  שמצורף, לכל שאלה תרגישו חופשי לשאול את הbuddy ואת מי שתרצו כולם יעזרו לכם</span><details class="tl-agents"><summary data-i18n="tl7AgentsSummary">רשימת סוכנים (Agents)</summary><ul>
+      <div class="tl-item" id="tl-5"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl5Step">LMS</div><div class="tl-tags"><span class="tag tag-owner-prof2" data-i18n="ownerProf2">חופף/ת מקצועי</span></div></div><div class="tl-body" data-i18n="tl5Body">היכרות מעמיקה עם המוצר ויצירת סוכנים , יכולות חדשות.</div><div class="tl-chk"><input type="checkbox" id="tl5c" onchange="markTl('tl-5',this)"><label for="tl5c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-7"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl7Step">פרויקטונים</div><div class="tl-tags"><span class="tag tag-owner-prof" data-i18n="ownerProf"> חופף מקצועי</span></div></div><div class="tl-body"><span data-i18n="tl7Body">כאן תיצרו סוכנים אמיתיים ותוכלו להיעזר בסרטונים ובJSON  שמצורף, לכל שאלה תרגישו חופשי לשאול את הbuddy ואת מי שתרצו כולם יעזרו לכם</span><details class="tl-agents"><summary data-i18n="tl7AgentsSummary">רשימת סוכנים (Agents)</summary><ul>
           <li><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%201%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding" target="_blank" class="agent-dl">Agent 1</a><a href="Agent_1.json" download="Agent_1.json" class="agent-dl" data-i18n="downloadJson">⬇ הורדת JSON</a></li>
           <li><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%202%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding" target="_blank" class="agent-dl">Agent 2</a><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%202%20%2D%20cortex%20%2D%20prompt%20%26%20skills%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding" target="_blank" class="agent-dl">prompt &amp; skills</a><a href="Agent%202%20-%20Workflow.json" download="Agent 2 - Workflow.json" class="agent-dl" data-i18n="downloadJson">⬇ הורדת JSON</a></li>
           <li><a href="https://jeenai365.sharepoint.com/sites/JEEN.AI/Shared%20Documents/Forms/AllItems.aspx?viewid=2fd0235f%2Dc653%2D41a2%2D9001%2D72431c0673a1&OR=Teams%2DHL&CT=1775387870855&id=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding%2FAgent%203%2Epdf&parent=%2Fsites%2FJEEN%2EAI%2FShared%20Documents%2FOnboarding" target="_blank" class="agent-dl">Agent 3</a><a href="Agent%203.1%20-%20workflow.json" download="Agent 3.1 - workflow.json" class="agent-dl" data-i18n="downloadJson31">⬇ הורדת JSON - agent 3.1</a><a href="Agent%203.2%20-%20workflow.json" download="Agent 3.2 - workflow.json" class="agent-dl" data-i18n="downloadJson32">⬇ הורדת JSON - agent 3.2</a></li>
@@ -555,9 +558,9 @@ body.sidebar-open { overflow: hidden; }
 
     <div class="week-badge w3" style="margin-top:24px;" data-i18n="weekIII">חלק III — פרויקט גמר ושיחות</div>
     <div class="timeline">
-      <div class="tl-item" id="tl-8"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl8Step">פרויקט גמר </div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDays15">1.5 ימים</span><span class="tag tag-owner" data-i18n="ownerVp"> VP / Buddy </span></div></div><div class="tl-body" data-i18n="tl8Body">קבלת משימה אמיתית מהיום-יום — עבודה Hands-on על המערכת. המטרה לא רק "לעשות" אלא גם להציע שיפורים.</div><div class="tl-chk"><input type="checkbox" id="tl8c" onchange="markTl('tl-8',this)"><label for="tl8c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-9"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl9Step">סיכום וביקורת</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerProfMgr">חופף מקצועי + מנהל ישיר</span><span class="tag tag-note" data-i18n="noteSummary">פגישת סיכום רשמית</span></div></div><div class="tl-body" data-i18n="tl9Body">הצגת התרגיל, סיעור מוחות לשיפור/שימור, סגירת פערים — פגישת סיכום חפיפה רשמית.</div><div class="tl-chk"><input type="checkbox" id="tl9c" onchange="markTl('tl-9',this)"><label for="tl9c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
-      <div class="tl-item" id="tl-10"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl10Step"> שיחות אישיות</div><div class="tl-tags"><span class="tag tag-time" data-i18n="tagDayHalf">0.5 יום</span><span class="tag tag-owner" data-i18n="ownerMgr">מנהל ישיר</span></div></div><div class="tl-body" data-i18n="tl10Body">שיחות עם המנהלים הישרים</div><div class="tl-chk"><input type="checkbox" id="tl10c" onchange="markTl('tl-10',this)"><label for="tl10c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-8"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl8Step">פרויקט גמר </div><div class="tl-tags"><span class="tag tag-owner-vp" data-i18n="ownerVp"> VP / Buddy </span></div></div><div class="tl-body" data-i18n="tl8Body">קבלת משימה אמיתית מהיום-יום — עבודה Hands-on על המערכת. המטרה לא רק "לעשות" אלא גם להציע שיפורים.</div><div class="tl-chk"><input type="checkbox" id="tl8c" onchange="markTl('tl-8',this)"><label for="tl8c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-9"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl9Step">סיכום וביקורת</div><div class="tl-tags"><span class="tag tag-owner-prof-mgr" data-i18n="ownerProfMgr">חופף מקצועי + מנהל ישיר</span><span class="tag tag-note" data-i18n="noteSummary">פגישת סיכום רשמית</span></div></div><div class="tl-body" data-i18n="tl9Body">הצגת התרגיל, סיעור מוחות לשיפור/שימור, סגירת פערים — פגישת סיכום חפיפה רשמית.</div><div class="tl-chk"><input type="checkbox" id="tl9c" onchange="markTl('tl-9',this)"><label for="tl9c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
+      <div class="tl-item" id="tl-10"><div class="tl-dot"></div><div class="tl-card"><div class="tl-top"><div class="tl-step" data-i18n="tl10Step"> שיחות אישיות</div><div class="tl-tags"><span class="tag tag-owner-mgr" data-i18n="ownerMgr">מנהל ישיר</span></div></div><div class="tl-body" data-i18n="tl10Body">שיחות עם המנהלים הישרים</div><div class="tl-chk"><input type="checkbox" id="tl10c" onchange="markTl('tl-10',this)"><label for="tl10c" data-i18n="markDone">סמן/י כשהושלם</label></div></div></div>
     </div>
   </section>
 
@@ -636,12 +639,8 @@ const TRANSLATIONS = {
     person1Role: "הכתובת הראשונה לכל שאלה — מלווה לאורך כל תהליך החפיפה",
     person2Name: "CTO וראשי צוותים",
     person2Role: "פגישות היכרות, הבנת הארגון וכיוון אסטרטגי",
-    person3Name: "נציג/ה QA ו-DevOps",
-    person3Role: "חשיפה לתשתית ולתהליכי איכות",
-    person4Name: "דורון / אייל / VP",
+    person4Name: "VP / מנהל ישיר",
     person4Role: "הנחיית הפרויקט הגמר",
-    person5Name: "ממשקים חיצוניים",
-    person5Role: "צה\"ל, בנק מזרחי (תלוי תקופה)",
 
     checklistTitle: "צ'ק ליסט עובד/ת חדש/ה",
     checklistIntro: "סמנו כל סעיף כשהוא הושלם — כך לא יפול שום דבר בין הכסאות.",
@@ -687,12 +686,6 @@ const TRANSLATIONS = {
     weekII2: "חלק II — עומק טכני ופרקטיקה",
     weekIII: "חלק III — פרויקט גמר ושיחות",
     markDone: "סמן/י כשהושלם",
-    tagDayHalf: "0.5 יום",
-    tagDay1: "1 יום",
-    tagDay05: "0.5 ימים",
-    tagDays2: "2 יום",
-    tagDays2Plus: "+2 יום",
-    tagDays15: "1.5 ימים",
     ownerAdmin: "חופף מנהלתי",
     ownerBuddy: "Buddy",
     ownerProf: " חופף מקצועי",
@@ -798,12 +791,8 @@ const TRANSLATIONS = {
     person1Role: "Your first point of contact for any question — supports you throughout the onboarding process",
     person2Name: "CTO & Team Leads",
     person2Role: "Intro meetings, understanding the organization and strategic direction",
-    person3Name: "QA & DevOps Rep",
-    person3Role: "Exposure to infrastructure and quality processes",
-    person4Name: "Doron / Eyal / VP",
+    person4Name: "VP / Direct Manager",
     person4Role: "Final project guidance",
-    person5Name: "External Interfaces",
-    person5Role: "IDF, Mizrahi Bank (period dependent)",
 
     checklistTitle: "New Employee Checklist",
     checklistIntro: "Check each item once completed — so nothing falls through the cracks.",
@@ -849,12 +838,6 @@ const TRANSLATIONS = {
     weekII2: "Part II — Technical Depth & Practice",
     weekIII: "Part III — Final Project & Talks",
     markDone: "Mark when completed",
-    tagDayHalf: "0.5 day",
-    tagDay1: "1 day",
-    tagDay05: "0.5 day",
-    tagDays2: "2 days",
-    tagDays2Plus: "+2 days",
-    tagDays15: "1.5 days",
     ownerAdmin: "Administrative guide",
     ownerBuddy: "Buddy",
     ownerProf: "Professional guide",
