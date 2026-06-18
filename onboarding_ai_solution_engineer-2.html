@@ -33,7 +33,7 @@
   --header-h: 64px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Heebo', sans-serif; background: var(--white); color: var(--text); }
+body { font-family: 'Heebo', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
 mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 
 /* TOPBAR */
@@ -41,6 +41,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
   position: fixed; top: 0; inset-inline: 0; height: var(--header-h);
   background: var(--white); display: flex; align-items: center;
   padding: 0 24px; gap: 16px; z-index: 100;
+  padding-top: max(0px, env(safe-area-inset-top));
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 0 rgba(98, 69, 97, 0.04);
 }
@@ -94,6 +95,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
   position: fixed; top: var(--header-h); inset-inline-start: 0; width: var(--sidebar-w);
   height: calc(100vh - var(--header-h)); background: var(--white);
   border-inline-end: 1px solid var(--border); overflow-y: auto; padding: 20px 0 40px; z-index: 90;
+  -webkit-overflow-scrolling: touch;
 }
 .sidebar-section { padding: 0 0 12px; margin-bottom: 4px; }
 .sidebar-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.8px; padding: 0 20px 8px; text-transform: uppercase; }
@@ -258,6 +260,74 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
 .hero-tag { gap: 8px; }
 .hero-tag .icon svg { width: 14px; height: 14px; }
 .hero-tag .icon { color: var(--accent); }
+
+/* MOBILE MENU */
+.menu-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 40px; height: 40px; padding: 0; flex-shrink: 0;
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+  color: var(--text); cursor: pointer;
+  transition: background .15s, border-color .15s, box-shadow .15s;
+}
+.menu-toggle:hover { background: var(--accent-light); border-color: rgba(98, 69, 97, 0.35); }
+.menu-toggle .icon svg { width: 20px; height: 20px; }
+.sidebar-backdrop {
+  display: none; position: fixed; inset: 0; z-index: 85;
+  background: rgba(26, 26, 26, 0.45); backdrop-filter: blur(2px);
+  opacity: 0; transition: opacity .25s ease;
+}
+body.sidebar-open .sidebar-backdrop { display: block; opacity: 1; }
+body.sidebar-open { overflow: hidden; }
+
+@media (max-width: 900px) {
+  :root { --header-h: 56px; }
+  .menu-toggle { display: inline-flex; }
+  .topbar { padding: 0 14px; gap: 10px; flex-wrap: wrap; }
+  .topbar-brand { font-size: 14px; gap: 8px; min-width: 0; flex: 1 1 auto; }
+  .topbar-sub { display: none; }
+  .search-wrap {
+    order: 3; flex: 1 1 100%; max-width: none; margin-inline-start: 0;
+    margin-bottom: 2px;
+  }
+  .lang-switch { padding: 5px 10px; font-size: 12px; }
+  .sidebar {
+    inset-inline-start: calc(-1 * var(--sidebar-w));
+    width: min(var(--sidebar-w), 85vw);
+    transition: inset-inline-start .25s ease, box-shadow .25s ease;
+    box-shadow: none;
+  }
+  body.sidebar-open .sidebar {
+    inset-inline-start: 0;
+    box-shadow: 0 8px 32px rgba(26, 26, 26, 0.18);
+  }
+  .main {
+    margin-inline-start: 0;
+    padding: 20px 16px calc(60px + env(safe-area-inset-bottom));
+    padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right));
+  }
+  .hero-card { padding: 24px 20px; margin-bottom: 28px; border-radius: 16px; }
+  .hero-card h1 { font-size: 1.65rem; }
+  .hero-subtitle { font-size: 14px; margin-bottom: 18px; }
+  .hero-welcome { font-size: 13.5px; padding: 12px 14px; }
+  .section { margin-bottom: 36px; scroll-margin-top: 76px; }
+  .section-hd { gap: 10px; margin-bottom: 16px; padding-bottom: 12px; }
+  .section-title { font-size: 17px; }
+  .section-ico { width: 34px; height: 34px; }
+  .chk-item { padding: 12px 14px; align-items: flex-start; }
+  .chk-item input[type="checkbox"] { margin-top: 2px; }
+  .tl-top { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .tl-card { padding: 12px 14px; }
+  .timeline { padding-inline-start: 26px; }
+  .person:hover { transform: none; }
+  .link-list a { padding: 8px 8px; min-height: 44px; }
+  .sidebar-item { padding: 11px 20px; min-height: 44px; }
+}
+
+@media (max-width: 400px) {
+  .topbar-brand > span:first-of-type { max-width: 9rem; overflow: hidden; text-overflow: ellipsis; }
+  .hero-card h1 { font-size: 1.45rem; }
+  .pill { font-size: 12px; padding: 5px 12px; }
+}
 </style>
 </head>
 <body>
@@ -287,11 +357,18 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
     <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-search-off" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.3-4.3M3 3l18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
 
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebar()" aria-hidden="true"></div>
+
 <header class="topbar">
+  <button type="button" class="menu-toggle" id="menu-toggle" onclick="toggleSidebar()" aria-expanded="false" aria-controls="sidebar-nav" data-i18n-aria-label="menuOpenLabel">
+    <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-menu"/></svg></span>
+  </button>
   <div class="topbar-brand">
     <div class="brand-mark" aria-hidden="true" title="Jeen">
       <span class="brand-mark__lavender"></span>
@@ -314,7 +391,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
   </button>
 </header>
 
-<nav class="sidebar">
+<nav class="sidebar" id="sidebar-nav">
   <div class="sidebar-section">
     <div class="sidebar-label" data-i18n="navQuick">ניווט מהיר</div>
     <a class="sidebar-item active" href="#hero" onclick="setActive(this)"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-home"/></svg></span> <span data-i18n="navWelcome">ברוכים הבאים</span></a>
@@ -491,6 +568,7 @@ mark { background: #F9E9A8; border-radius: 3px; padding: 0 2px; }
     </div>
     <div class="links-grid">
       <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-mail"/></svg></span> Outlook</div><div class="link-list"><a href="https://support.microsoft.com/en-us/office/outlook-training-8a5b816d-9052-4190-a5eb-494512343cca" target="_blank" data-i18n="linkOutlook">מדריכי התחברות ושימוש</a></div></div>
+      <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-users"/></svg></span> <span data-i18n="linkTeamsTitle">Team - Background</span></div><div class="link-list"><a href="background-Defence.png" download="background-Defence.png" data-i18n="linkTeamsBg">Defence</a></div></div>
       <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-card"/></svg></span> <span data-i18n="cibusLabel">סיבוס</span></div><div class="link-list"><a href="https://cibus.pluxee.co.il/users-support" target="_blank" data-i18n="linkCibus1">שחזור סיסמה</a><a href="https://cibus.pluxee.co.il/users-support" target="_blank" data-i18n="linkCibus2">תשלום בנייד</a><a href="https://cibus.pluxee.co.il/users-support" target="_blank" data-i18n="linkCibus3">הזמנה עם וולט</a></div></div>
       <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-message"/></svg></span> Slack</div><div class="link-list"><a href="https://slack.com/help/articles/360059928654-How-to-use-Slack--your-quick-start-guide" target="_blank" data-i18n="linkSlack">מדריך התחברות ושימוש</a></div></div>
       <div class="link-card"><div class="link-card-title"><span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><use href="#i-clipboard"/></svg></span> Jira</div><div class="link-list"><a href="https://www.atlassian.com/software/jira/guides/getting-started/introduction" target="_blank" data-i18n="linkJira1">מדריך כללי</a><a href="https://jeenai365.sharepoint.com/:w:/r/sites/JEEN.AI/_layouts/15/Doc.aspx?sourcedoc=%7B11C97A2F-C0CA-44CC-A608-96EBC26C8406%7D&file=Workflow%20Process%20%E2%80%93%20Jeen%20AI%20%20Solutions%20%26%20Project%20Management%20Team.docx&action=default&mobileredirect=true" target="_blank" data-i18n="linkJira2">מדריך לשימוש ב-Jeen</a></div></div>
@@ -652,6 +730,8 @@ const TRANSLATIONS = {
     linksTitle: "לינקים שימושיים",
     cibusLabel: "סיבוס",
     linkOutlook: "מדריכי התחברות ושימוש",
+    linkTeamsTitle: "Teams - Background",
+    linkTeamsBg: "Defence",
     linkCibus1: "שחזור סיסמה",
     linkCibus2: "תשלום בנייד",
     linkCibus3: "הזמנה עם וולט",
@@ -670,7 +750,9 @@ const TRANSLATIONS = {
     tip3Body: "המשך ליווי דרך מישוב חודשי/רבעוני ותוכנית פיתוח אישי — החפיפה היא נקודת התחלה.",
 
     langSwitchLabel: "EN",
-    langSwitchTitle: "Switch to English"
+    langSwitchTitle: "Switch to English",
+    menuOpenLabel: "פתיחת תפריט ניווט",
+    menuCloseLabel: "סגירת תפריט ניווט"
   },
   en: {
     pageTitle: "JeenAI Onboarding AI Solutions Engineer",
@@ -810,6 +892,8 @@ const TRANSLATIONS = {
     linksTitle: "Useful Links",
     cibusLabel: "Cibus",
     linkOutlook: "Login and usage guides",
+    linkTeamsTitle: "Teams - Background",
+    linkTeamsBg: "Defence",
     linkCibus1: "Password recovery",
     linkCibus2: "Mobile payment",
     linkCibus3: "Ordering with Wolt",
@@ -828,7 +912,9 @@ const TRANSLATIONS = {
     tip3Body: "Continued support via monthly/quarterly feedback and a personal development plan — onboarding is just the starting point.",
 
     langSwitchLabel: "עברית",
-    langSwitchTitle: "עבור לעברית"
+    langSwitchTitle: "עבור לעברית",
+    menuOpenLabel: "Open navigation menu",
+    menuCloseLabel: "Close navigation menu"
   }
 };
 
@@ -878,6 +964,7 @@ function setLanguage(lang) {
 
   applyTranslations(lang);
   updateProgress();
+  updateMenuToggleState();
 }
 
 function toggleLanguage() {
@@ -977,6 +1064,34 @@ function markTl(id, cb) {
 function setActive(el) {
   document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
   el.classList.add('active');
+  closeSidebar();
+}
+
+function isMobileNav() {
+  return window.matchMedia('(max-width: 900px)').matches;
+}
+
+function toggleSidebar() {
+  document.body.classList.toggle('sidebar-open');
+  updateMenuToggleState();
+}
+
+function closeSidebar() {
+  if (!document.body.classList.contains('sidebar-open')) return;
+  document.body.classList.remove('sidebar-open');
+  updateMenuToggleState();
+}
+
+function updateMenuToggleState() {
+  const btn = document.getElementById('menu-toggle');
+  if (!btn) return;
+  const open = document.body.classList.contains('sidebar-open');
+  const t = TRANSLATIONS[currentLang];
+  const label = open ? t.menuCloseLabel : t.menuOpenLabel;
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.setAttribute('aria-label', label);
+  const useEl = btn.querySelector('use');
+  if (useEl) useEl.setAttribute('href', open ? '#i-x' : '#i-menu');
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1030,6 +1145,14 @@ window.addEventListener('scroll', () => {
   let cur = '';
   document.querySelectorAll('.section[id]').forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
   document.querySelectorAll('.sidebar-item').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+cur));
+});
+
+window.addEventListener('resize', () => {
+  if (!isMobileNav()) closeSidebar();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSidebar();
 });
 </script>
 </body>
